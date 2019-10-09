@@ -1,9 +1,11 @@
 @component('mail::message')
-# Welcome to freeCodeGram
+# Welcome to Drip.
 
-This is a community of fellow developers and we love that you have joined us.
+The website where you can browse, buy and sell with the people you follow.<br>
+Have fun on our social network by exploring different styles but remember, spend responsibly.
+
 
 
 All the best,<br>
-Victor
+Drip Team
 @endcomponent

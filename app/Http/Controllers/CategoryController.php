@@ -9,14 +9,15 @@ class CategoryController extends Controller
 {
     public function men()
     {
-        $posts = Post::paginate(5);;
+        $posts = Post::paginate(5);
 
         return view('posts.men', compact('posts'));
     }
 
     public function women()
     {
-        return view('posts.women');
+        $posts = Post::paginate(5);;
+        return view('posts.women', compact('posts'));
     }
 
 }

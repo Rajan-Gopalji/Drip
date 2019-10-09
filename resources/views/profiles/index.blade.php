@@ -40,6 +40,14 @@
             <div class="col-4 pb-4">
                 <a href="/p/{{ $post->id }}">
                     <img src="/storage/{{ $post->image }}" class="w-100">
+                    <div class="pt-2">
+                                        <span class="text-dark pl-2">
+                                            <b>{{ $post->caption }}</b>
+                                        </span>
+                        <span class="text-success float-right pr-2">
+                                            £45.00
+                                        </span>
+                    </div>
                 </a>
             </div>
         @endforeach

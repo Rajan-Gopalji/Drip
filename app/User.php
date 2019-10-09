@@ -46,6 +46,7 @@ class User extends Authenticatable
         static::created(function ($user) {
             $user->profile()->create([
                 'title' => $user->username,
+                'image' => 'profile/AvOcgrDK5tsfhuAZGHB55rPZkpWnHnxpBHv0Eg8z.jpeg',
             ]);
 
             Mail::to($user->email)->send(new NewUserWelcomeMail());
