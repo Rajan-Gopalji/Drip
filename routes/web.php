@@ -24,7 +24,11 @@ Route::post('follow/{user}', 'FollowsController@store');
 Route::get('/', 'PostsController@index');
 Route::get('/p/create', 'PostsController@create');
 Route::post('/p', 'PostsController@store');
+Route::get('/men', 'CategoryController@men');
+Route::get('/women', 'CategoryController@women');
 Route::get('/p/{post}', 'PostsController@show');
+
+
 
 Route::get('/profile/{user}', 'ProfilesController@index')->name('profile.show');
 Route::get('/profile/{user}/edit', 'ProfilesController@edit')->name('profile.edit');
