@@ -28,6 +28,40 @@
                     @endif
                 </div>
 
+                <div class="form-group row">
+                    <label for="gender" class="col-md-4 col-form-label">Gender</label>
+
+                    <input id="gender"
+                           type="text"
+                           class="form-control{{ $errors->has('gender') ? ' is-invalid' : '' }}"
+                           name="gender"
+                           value="{{ old('gender') }}"
+                           autocomplete="gender" autofocus>
+
+                    @if ($errors->has('gender'))
+                        <span class="invalid-feedback" role="alert">
+                            <strong>{{ $errors->first('gender') }}</strong>
+                        </span>
+                    @endif
+                </div>
+
+                <div class="form-group row">
+                    <label for="category" class="col-md-4 col-form-label">Category</label>
+
+                    <input id="category"
+                           type="text"
+                           class="form-control{{ $errors->has('category') ? ' is-invalid' : '' }}"
+                           name="category"
+                           value="{{ old('category') }}"
+                           autocomplete="category" autofocus>
+
+                    @if ($errors->has('category'))
+                        <span class="invalid-feedback" role="alert">
+                            <strong>{{ $errors->first('category') }}</strong>
+                        </span>
+                    @endif
+                </div>
+
                 <div class="row">
                     <label for="image" class="col-md-4 col-form-label">Post Image</label>
 

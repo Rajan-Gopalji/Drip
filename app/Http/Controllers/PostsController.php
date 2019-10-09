@@ -31,6 +31,8 @@ class PostsController extends Controller
     {
         $data = request()->validate([
             'caption' => 'required',
+            'gender' => 'required',
+            'category' => 'required',
             'image' => ['required', 'image'],
         ]);
 
@@ -41,6 +43,8 @@ class PostsController extends Controller
 
         auth()->user()->posts()->create([
             'caption' => $data['caption'],
+            'gender' => $data['gender'],
+            'category' => $data['category'],
             'image' => $imagePath,
         ]);
 

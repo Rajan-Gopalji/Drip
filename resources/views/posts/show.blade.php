@@ -38,10 +38,38 @@
 
                 <p>
                     <span class="font-weight-bold">
-                        <a href="/profile/{{ $post->user->id }}">
-                            <span class="text-dark">{{ $post->user->username }}</span>
-                        </a>
-                    </span> {{ $post->caption }}
+                            <span class="text-dark">{{ $post->caption }}</span>
+                    </span>
+                </p>
+                <p>
+                    <span class="font-weight-bold">
+                            <span class="text-dark">For: </span>
+                    </span>  {{ $post->gender }}
+                </p>
+                <p>
+                    <span class="font-weight-bold">
+                            <span class="text-dark">Category: </span>
+                    </span>  {{ $post->category }}
+                </p>
+                <p>
+                    <span class="font-weight-bold">
+                            <span class="text-dark">Size: </span>
+                    </span>
+                </p>
+                <p>
+                    <span class="font-weight-bold">
+                            <span class="text-dark">Price: </span>
+                    </span>
+                </p>
+                <p>
+                    <span class="font-weight-bold">
+                            <span class="text-dark">Condition: </span>
+                    </span>
+                </p>
+                <p>
+                    <span class="font-weight-bold">
+                            <span class="text-dark">Description: </span>
+                    </span>
                 </p>
             </div>
         </div>
