@@ -43,7 +43,7 @@
                 </p>
                 <p>
                     <span class="font-weight-bold">
-                            <span class="text-dark">For: </span>
+                            <span class="text-dark">For:  </span>
                     </span>  {{ $post->gender }}
                 </p>
                 <p>
@@ -54,22 +54,22 @@
                 <p>
                     <span class="font-weight-bold">
                             <span class="text-dark">Size: </span>
-                    </span>
+                    </span> {{ $post->size }}
                 </p>
                 <p>
                     <span class="font-weight-bold">
                             <span class="text-dark">Price: </span>
-                    </span>
+                    </span> {{ $post->price }}
                 </p>
                 <p>
                     <span class="font-weight-bold">
                             <span class="text-dark">Condition: </span>
-                    </span>
+                    </span> {{ $post->quality }}
                 </p>
                 <p>
                     <span class="font-weight-bold">
                             <span class="text-dark">Description: </span>
-                    </span>
+                    </span> {{ $post->description }}
                 </p>
             </div>
         </div>

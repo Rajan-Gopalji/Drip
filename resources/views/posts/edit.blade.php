@@ -5,8 +5,9 @@
         <link href="{{ asset('css/button.css') }}" rel="stylesheet" />
     </head>
 <div class="container">
-    <form action="/p" enctype="multipart/form-data" method="post">
+    <form action="/profile/{{$user->id}}/p/{{$post->id}}" enctype="multipart/form-data" method="post">
         @csrf
+        @method('PATCH')
 
         <div class="row">
             <div class="col-8 offset-2">
@@ -21,7 +22,7 @@
                            type="text"
                            class="form-control{{ $errors->has('caption') ? ' is-invalid' : '' }}"
                            name="caption"
-                           value="{{ old('caption') }}"
+                           value="{{ old('caption') ?? $post->caption}}"
                            autocomplete="caption" autofocus>
 
                     @if ($errors->has('caption'))
@@ -34,17 +35,30 @@
                 <div class="form-group row">
                     <label for="size" class="col-md-4 col-form-label">Size</label>
 
-                        <div class="radio-toolbar">
-                            <input type="radio" id="radioSmall" name="size" value="small">
+                    <div class="radio-toolbar">
+                        @if($post->size == 'small')
+                            <input type="radio" id="radioSmall" name="size" value="small" checked>
                             <label for="radioSmall">S</label>
-
                             <input type="radio" id="radioMedium" name="size" value="medium">
                             <label for="radioMedium">M</label>
-
                             <input type="radio" id="radioLarge" name="size" value="large">
                             <label for="radioLarge">L</label>
-
-                        </div>
+                        @elseif($post->size == 'medium')
+                            <input type="radio" id="radioSmall" name="size" value="small">
+                            <label for="radioSmall">S</label>
+                            <input type="radio" id="radioMedium" name="size" value="medium" checked>
+                            <label for="radioMedium">M</label>
+                            <input type="radio" id="radioLarge" name="size" value="large">
+                            <label for="radioLarge">L</label>
+                        @else
+                            <input type="radio" id="radioSmall" name="size" value="small">
+                            <label for="radioSmall">S</label>
+                            <input type="radio" id="radioMedium" name="size" value="medium">
+                            <label for="radioMedium">M</label>
+                            <input type="radio" id="radioLarge" name="size" value="large" checked>
+                            <label for="radioLarge">L</label>
+                        @endif
+                    </div>
 
                     @if ($errors->has('size'))
                         <span class="invalid-feedback" role="alert">
@@ -59,16 +73,21 @@
                     <label for="gender" class="col-md-4 col-form-label">Gender</label>
 
                     <div class="radio-toolbar">
-                        <input type="radio" id="radioMen" name="gender" value="men">
-                        <label for="radioMen">Men</label>
-
-                        <input type="radio" id="radioWomen" name="gender" value="women">
-                        <label for="radioWomen">Women</label>
-
+                        @if ($post->gender == 'men')
+                            <input type="radio" id="radioMen" name="gender" value="men" checked>
+                            <label for="radioMen">Men</label>
+                            <input type="radio" id="radioWomen" name="gender" value="women">
+                            <label for="radioWomen">Women</label>
+                        @else
+                            <input type="radio" id="radioMen" name="gender" value="men">
+                            <label for="radioMen">Men</label>
+                            <input type="radio" id="radioWomen" name="gender" value="women" checked>
+                            <label for="radioWomen">Women</label>
+                        @endif
                     </div>
                     <p>&nbsp;</p>
 
-                @if ($errors->has('gender'))
+                    @if ($errors->has('gender'))
                         <span class="invalid-feedback" role="alert">
                             <strong>{{ $errors->first('gender') }}</strong>
                         </span>
@@ -81,13 +100,18 @@
                     <label for="quality" class="col-md-4 col-form-label">Condition</label>
 
                     <div class="radio-toolbar">
-                        <input type="radio" id="radioNew" name="quality" value="new">
-                        <label for="radioNew">New</label>
-
-                        <input type="radio" id="radioUsed" name="quality" value="used">
-                        <label for="radioUsed">Used</label>
+                        @if($post->quality == 'new')
+                            <input type="radio" id="radioNew" name="quality" value="new" checked>
+                            <label for="radioNew">New</label>
+                            <input type="radio" id="radioUsed" name="quality" value="used">
+                            <label for="radioUsed">Used</label>
+                        @else
+                            <input type="radio" id="radioNew" name="quality" value="new">
+                            <label for="radioNew">New</label>
+                            <input type="radio" id="radioUsed" name="quality" value="used" checked>
+                            <label for="radioUsed">Used</label>
+                        @endif
                     </div>
-                    <p>&nbsp;</p>
 
                     @if ($errors->has('quality'))
                         <span class="invalid-feedback" role="alert">
@@ -101,8 +125,8 @@
 
                     <input type="text" name="price" class="form-control{{ $errors->has('price') ? ' is-invalid' : '' }}"
                            id="currency-field" pattern="^\d{1,3}(,\d{3})*(\.\d+)?$"
-                           value="{{ old('price') }}" data-type="currency" placeholder="£0000.00" maxlength = "4" required><i>Items must be <£10,000</i>
-{{--                    <script type="text/javascript" src="{{ asset('js/currency.js') }}" ></script>--}}
+                           value="{{ old('price') ?? $post->price}}" data-type="currency" placeholder="£0000.00" maxlength = "4" required><i>Items must be <£10,000</i>
+                    {{--                    <script type="text/javascript" src="{{ asset('js/currency.js') }}" ></script>--}}
 
 
                     @if ($errors->has('price'))
@@ -119,7 +143,7 @@
                            type="text"
                            class="form-control{{ $errors->has('category') ? ' is-invalid' : '' }}"
                            name="category"
-                           value="{{ old('category') }}"
+                           value="{{ old('category') ?? $post->category}}"
                            autocomplete="category" autofocus>
 
                     @if ($errors->has('category'))
@@ -166,7 +190,7 @@
                            type="text"
                            class="form-control{{ $errors->has('description') ? ' is-invalid' : '' }}"
                            name="description"
-                           value="{{ old('description') }}"
+                           value="{{ old('description') ?? $post->description}}"
                            autocomplete="description" autofocus>
 
                     @if ($errors->has('description'))
@@ -187,7 +211,7 @@
                 </div>
 
                 <div class="row pt-4">
-                    <button class="btn btn-primary">Add New Post</button>
+                    <button class="btn btn-primary">Update Item Post</button>
                 </div>
 
             </div>

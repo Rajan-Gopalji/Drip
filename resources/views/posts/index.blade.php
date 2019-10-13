@@ -20,8 +20,8 @@
                                             <b>{{ $post->caption }}</b>
                                         </span>
                                 <span class="text-success float-right pr-2">
-                                            £45.00
-                                        </span>
+                                    {{ $post->price }}
+                                </span>
                             </div>
                         </a>
                     </div>

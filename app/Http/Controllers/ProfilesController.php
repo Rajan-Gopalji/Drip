@@ -44,6 +44,13 @@ class ProfilesController extends Controller
         return view('profiles.edit', compact('user'));
     }
 
+    public function manage(User $user)
+    {
+        $this->authorize('update', $user->profile);
+
+        return view('posts.manage', compact('user'));
+    }
+
     public function update(User $user)
     {
         $this->authorize('update', $user->profile);
@@ -71,4 +78,5 @@ class ProfilesController extends Controller
 
         return redirect("/profile/{$user->id}");
     }
+
 }

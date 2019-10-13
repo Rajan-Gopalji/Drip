@@ -27,9 +27,12 @@ Route::post('/p', 'PostsController@store');
 Route::get('/men', 'CategoryController@men');
 Route::get('/women', 'CategoryController@women');
 Route::get('/p/{post}', 'PostsController@show');
-
+Route::get('/profile/{user}/p/{post}/edit', 'PostsController@edit');
+Route::patch('/profile/{user}/p/{post}', 'PostsController@update');
+Route::get('/profile/{user}/delete/{id}', 'ProfilesController@delete')->name('post.delete');
 
 
 Route::get('/profile/{user}', 'ProfilesController@index')->name('profile.show');
+Route::get('/profile/{user}/manage', 'ProfilesController@manage')->name('profile.show');
 Route::get('/profile/{user}/edit', 'ProfilesController@edit')->name('profile.edit');
 Route::patch('/profile/{user}', 'ProfilesController@update')->name('profile.update');

@@ -19,10 +19,11 @@ class CreatePostsTable extends Migration
             $table->string('caption');
             $table->string('gender');
             $table->string('category');
-//            $table->string('size');
-//            $table->string('quality');
-//            $table->text('description');
-//            $table->string('colour');
+            $table->string('size');
+            $table->string('quality');
+            $table->text('description');
+            $table->string('colour');
+            $table->double('price');
             $table->string('image');
             $table->timestamps();
 

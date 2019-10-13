@@ -15,7 +15,7 @@
                 </div>
 
                 @can('update', $user->profile)
-                    <a href="/p/create">Add New Post</a>
+                    <a href="/p/create">Post New Item</a>
                 @endcan
 
             </div>
@@ -45,8 +45,8 @@
                                             <b>{{ $post->caption }}</b>
                                         </span>
                         <span class="text-success float-right pr-2">
-                                            £45.00
-                                        </span>
+                            £{{ $post->price }}
+                        </span>
                     </div>
                 </a>
             </div>

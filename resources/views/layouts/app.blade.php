@@ -40,7 +40,7 @@
                                     <li><a href="/men">Men</a></li>
                                     <li><a href="/women">Women</a></li>
                                     <li><a href="/p/create">Sell Your Own</a></li>
-                                    <li><a href="#">Manage Your Stock</a></li>
+                                    <li><a href="/profile/{{Auth::user()->id}}/manage">Manage Your Stock</a></li>
                                     <li class="hassubs">
                                         <a href="/profile/{{Auth::user()->id}}">{{ Auth::user()->username }}</a>
                                         <ul>
