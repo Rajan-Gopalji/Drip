@@ -29,7 +29,7 @@ Route::get('/women', 'CategoryController@women');
 Route::get('/p/{post}', 'PostsController@show');
 Route::get('/profile/{user}/p/{post}/edit', 'PostsController@edit');
 Route::patch('/profile/{user}/p/{post}', 'PostsController@update');
-Route::get('/profile/{user}/delete/{id}', 'ProfilesController@delete')->name('post.delete');
+Route::get('/profile/{user}/destroy/{id}', 'PostsController@destroy')->name('post.destroy');
 
 
 Route::get('/profile/{user}', 'ProfilesController@index')->name('profile.show');

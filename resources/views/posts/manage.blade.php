@@ -15,7 +15,8 @@
                 <a href="/p/{{ $post->id }}">
                     <div class="text-right">
 {{--                        <button type="button" class="block-delete">Delete</button>--}}
-                        <a class="block-delete" name="Delete">Delete</a>
+{{--                        <a class="block-delete" onClick="JSconfirm({{$post->id}})" name="Delete">Delete</a>--}}
+                        <a href="{{ route('post.destroy', ['id' => $post->id, 'user' => $user ->id]) }}" onclick="return confirm('Are you sure?')" class="block-delete">Delete</a>
                     </div>
                     <img src="/storage/{{ $post->image }}" class="w-100">
                     <div>
@@ -36,6 +37,5 @@
         @endforeach
     </div>
 </div>
-
 @endsection
 

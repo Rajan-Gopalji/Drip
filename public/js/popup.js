@@ -1,5 +1,5 @@
-    function JSconfirm(delid){
-      Swal.fire({
+function JSconfirm(id){
+    Swal.fire({
         title: 'Are you sure?',
         text: "You won't be able to revert this!",
         type: 'warning',
@@ -7,15 +7,21 @@
         confirmButtonColor: '#3085d6',
         cancelButtonColor: '#d33',
         confirmButtonText: 'Yes, delete it!'
-      }).then((result) => {
+    }).then((result) => {
         if (result.value) {
-            {{ route('post.delete', ['id' => $post->id]) }}
-          window.location.href='delete.php?del_id=' +delid+'';
-          Swal.fire(
-            'Deleted!',
-            'Your item has been deleted.',
-            'success'
-          )
+            // window.location.href='delete.php?del_id=' +id+'';
+            $.ajax({
+                type: "POST",
+                url: "{{url('/profile/1/destroy/')}}" + id,
+                data: {id: id},
+                success: function (data) {
+            Swal.fire(
+                'Deleted!',
+                'Your item has been deleted.',
+                'success'
+            )
+                }
+            })
         }
-      })
-    }
+    })
+}

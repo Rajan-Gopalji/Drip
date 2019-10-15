@@ -62,6 +62,19 @@ class PostsController extends Controller
         return redirect('/profile/' . auth()->user()->id);
     }
 
+    public function destroy(User $user, $id)
+//    public function destroy(User $user, Post $post)
+    {
+//        $post = Post::where('id', $id);
+//        $post->delete();
+//        return redirect(back());
+        Post::destroy($id);
+//        dd($post);
+//        return redirect("/profile/{$user->id}/manage")->with('success', 'Post Updated');
+        return back()->with('success', 'Post Updated');
+    }
+
+
     public function edit(User $user, Post $post)
     {
         $this->authorize('update', $user->profile);
@@ -69,7 +82,6 @@ class PostsController extends Controller
 //        dd($post->id);
         return view('posts.edit', compact('user', 'post'));
     }
-
 
     public function update(Request $request, User $user, Post $post)
     {
@@ -104,13 +116,6 @@ class PostsController extends Controller
         ));
         return redirect("/profile/{$user->id}")->with('success', 'Post Updated');
 
-    }
-
-    public function delete(User $user, $id)
-    {
-        $post = Post::where('id', $id);
-        $post->delete();
-        return redirect("/profile/{$user->id}")->with('success', 'Post Deleted');
     }
 
     public function show(\App\Post $post)
