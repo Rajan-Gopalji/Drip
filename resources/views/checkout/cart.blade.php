@@ -33,7 +33,7 @@
                         <div class="cart_item_product d-flex flex-row align-items-center justify-content-start">
                             <a href="#">
                                 <div class="cart_item_image">
-                                    <div><img src="{{ URL::to('/') }}/images/{{$mImage->first() }}" alt="#"></div>
+                                    <div><img src="/storage/{{$post->image}}" alt="#"></div>
                                 </div>
                             </a>
                             <div class="cart_item_name_container">
