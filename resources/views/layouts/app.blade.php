@@ -20,6 +20,7 @@
     <link href="{{ asset('css/main_styles.css') }}" rel="stylesheet">
     <link href="{{ asset('css/responsive.css') }}" rel="stylesheet">
 
+
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
     <script src="{{ asset('js/jquery-3.1.1.min.js') }}" defer></script>
@@ -67,7 +68,7 @@
                                         <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
                                              viewBox="0 0 489 489" style="enable-background:new 0 0 489 489;" xml:space="preserve">
                                         </svg>
-                                        <div>Cart <span>(0)</span></div>
+                                        <div>Cart <span>({{\App\Cart::where('user_id', Auth::user()->id)->count()}})</span></div>
                                     </a>
                                 </div>
                                 <div class="search">

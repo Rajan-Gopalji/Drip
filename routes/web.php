@@ -33,7 +33,10 @@ Route::patch('/profile/{user}/p/{post}', 'PostsController@update');
 Route::get('/profile/{user}/destroy/{id}', 'PostsController@destroy')->name('post.destroy');
 
 
+
 Route::get('/profile/{user}/cart', 'CartController@index')->name('cart.index');
+Route::get('/cart/destroy/{post_id}', 'CartController@destroy')->name('cart.destroy');
+Route::get( '/cart/add/{post_id}', 'CartController@add' )->name('cart.add');
 
 
 Route::get('/profile/{user}', 'ProfilesController@index')->name('profile.show');

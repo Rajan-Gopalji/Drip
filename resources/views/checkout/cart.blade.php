@@ -1,14 +1,12 @@
 @extends('layouts.app')
 
+<head>
+    {{--        <link href="{{ asset('css/main_styles.css') }}" rel="stylesheet">--}}
+    <link href="{{ asset('css/cart.css')}}" rel="stylesheet">
+    {{--        <link rel="stylesheet" type="text/css" href="{{ asset('css/cart_responsive.css')}}styles/cart_responsive.css">--}}
+</head>
 @section('content')
-    <head>
-        <link href="{{ asset('css/cart.css')}}" rel="stylesheet">
-        <link href="{{ asset('css/main_styles.css') }}" rel="stylesheet">
-        {{--        <link rel="stylesheet" type="text/css" href="{{ asset('css/cart_responsive.css')}}styles/cart_responsive.css">--}}
-    </head>
-
     <!-- Cart Info -->
-
     <div class="cart_info">
         <div class="container">
             <div class="row">
@@ -31,7 +29,7 @@
                     <div class="cart_item d-flex flex-lg-row flex-column align-items-lg-center align-items-start justify-content-start">
                         <!-- Name -->
                         <div class="cart_item_product d-flex flex-row align-items-center justify-content-start">
-                            <a href="#">
+                            <a href="/p/{{$post->id}}">
                                 <div class="cart_item_image">
                                     <div><img src="/storage/{{$post->image}}" alt="#"></div>
                                 </div>
@@ -40,7 +38,7 @@
 
 {{--                                {{dd($post->caption)}}--}}
 
-                                <div class="cart_item_name"><a href="#">{{$post->caption}}</a></div>
+                                <div class="cart_item_name"><a href="/p/{{$post->id}}">{{$post->caption}}</a></div>
                                 <div class="cart_item_edit"><a href="#">Edit Product</a></div>
                             </div>
                         </div>
@@ -49,14 +47,11 @@
                         <!-- Quantity -->
                         <div class="cart_item_quantity">
                             <div class="product_quantity_container">
-                                <!-- <div class="product_quantity clearfix">
-                                  <span>Qty</span>
-                                  <input id="quantity_input" type="text" pattern="[0-9]*" value="1">
-                                  <div class="quantity_buttons">
-                                    <div id="quantity_inc_button" class="quantity_inc quantity_control"><i class="fa fa-chevron-up" aria-hidden="true"></i></div>
-                                    <div id="quantity_dec_button" class="quantity_dec quantity_control"><i class="fa fa-chevron-down" aria-hidden="true"></i></div>
+                                <div class="clearfix">
+                                  <div class="button clear_cart_button">
+                                      <a href="{{ route('cart.destroy', ['post_id' => $post->id]) }}" onclick="return confirm('Are you sure?')" class="block-delete">Remove</a>
                                   </div>
-                                </div> -->
+                                </div>
                             </div>
                         </div>
                         <!-- Total -->
@@ -68,10 +63,10 @@
             <div class="row row_cart_buttons">
                 <div class="col">
                     <div class="cart_buttons d-flex flex-lg-row flex-column align-items-start justify-content-start">
-                        <div class="button continue_shopping_button"><a href="#">Continue shopping</a></div>
+                        <div class="button continue_shopping_button"><a href="/">Continue shopping</a></div>
                         <div class="cart_buttons_right ml-lg-auto">
                             <div class="button clear_cart_button"><a href="#">Clear cart</a></div>
-                            <div class="button update_cart_button"><a href="#">Update cart</a></div>
+                            <div class="button update_cart_button"><a href="/profile/{{Auth::user()->id}}/cart">Update cart</a></div>
                         </div>
                     </div>
                 </div>
@@ -103,18 +98,18 @@
                     </div>
 
                     <!-- Coupon Code -->
-                    <div class="coupon">
-                        <div class="section_title">Coupon code</div>
-                        <div class="section_subtitle">Enter your coupon code</div>
-                        <div class="coupon_form_container">
-                            <form action="#" id="coupon_form" class="coupon_form">
-                                <input type="text" class="coupon_input" required="required">
-                                <button class="button coupon_button"><span>Apply</span></button>
-                            </form>
-                        </div>
-                    </div>
+{{--                    <div class="coupon">--}}
+{{--                        <div class="section_title">Coupon code</div>--}}
+{{--                        <div class="section_subtitle">Enter your coupon code</div>--}}
+{{--                        <div class="coupon_form_container">--}}
+{{--                            <form action="#" id="coupon_form" class="coupon_form">--}}
+{{--                                <input type="text" class="coupon_input" required="required">--}}
+{{--                                <button class="button coupon_button"><span>Apply</span></button>--}}
+{{--                            </form>--}}
+{{--                        </div>--}}
+{{--                    </div>--}}
                 </div>
-
+                <!--Cart total -->
                 <div class="col-lg-6 offset-lg-2">
                     <div class="cart_total">
                         <div class="section_title">Cart total</div>
@@ -123,7 +118,7 @@
                             <ul>
                                 <li class="d-flex flex-row align-items-center justify-content-start">
                                     <div class="cart_total_title">Subtotal</div>
-                                    <div class="cart_total_value ml-auto">£</div>
+                                    <div class="cart_total_value ml-auto">£{{$total}}</div>
                                 </li>
                                 <li class="d-flex flex-row align-items-center justify-content-start">
                                     <div class="cart_total_title">Shipping</div>
@@ -131,7 +126,7 @@
                                 </li>
                                 <li class="d-flex flex-row align-items-center justify-content-start">
                                     <div class="cart_total_title">Total</div>
-                                    <div class="cart_total_value ml-auto">£</div>
+                                    <div class="cart_total_value ml-auto">£{{$total}}</div>
                                 </li>
                             </ul>
                         </div>

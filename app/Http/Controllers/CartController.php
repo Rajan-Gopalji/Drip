@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Cart;
 use App\Post;
 use App\User;
 use DB;
@@ -17,6 +18,11 @@ class CartController extends Controller
         $posts = Post::whereIn('id', $user)->paginate(5);
         $mImage = DB::table('multi_image')->where('post_id', $user)->pluck('image');
 
+        $total = 0;
+        foreach ($posts as $postPrice){
+            $total = $total + $postPrice->price;
+        }
+//        dd($total);
 //        $cart_user_id = DB::table('carts')->pluck('user_id');
 //        $cart_post_id = DB::table('carts')->pluck('post_id');
 //        $user_id = $user->id;
@@ -33,6 +39,38 @@ class CartController extends Controller
 //        $posts = Post::whereIn('user_id', $cart_user_id);
 //        dd($posts);
 
-        return view('checkout.cart', compact('user', 'posts', 'mImage'));
+        return view('checkout.cart', compact('user', 'posts', 'mImage', 'total'));
+    }
+
+    public function destroy($post_id)
+//    public function destroy(User $user, Post $post)
+    {
+        $user_id = auth()->user()->id;
+//        $post = Post::where('id', $id);
+//        $post->delete();
+//        return redirect(back());
+        Cart::where('post_id', $post_id)->delete();
+//        Cart::destroy($post_id);
+//        dd($post);
+//        return redirect("/profile/{$user->id}/manage")->with('success', 'Post Updated');
+        return back()->with('success', 'Post Updated');
+    }
+
+    public function add($post_id)
+    {
+        $user_id = auth()->user()->id;
+        $duplicate = Cart::where(['user_id' => $user_id, 'post_id' => $post_id])->exists();
+        if ($duplicate == true)
+        {
+            $this->destroy($post_id);
+            return back()->with('success', 'Post Updated');
+//            return redirect()->route( 'cart.index',[$user_id]);
+        } else {
+            Cart::create([
+                'user_id' => $user_id,
+                'post_id' => $post_id,
+            ]);
+        }
+        return redirect()->route( 'cart.index',[$user_id] );
     }
 }

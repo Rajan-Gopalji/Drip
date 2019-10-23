@@ -934,7 +934,7 @@ section
 {
 	font-size: 30px;
 	font-weight: 600;
-	color: #232323;
+	color: #f2e9e9;
 	line-height: 0.75;
 }
 .product_price
@@ -942,7 +942,7 @@ section
 	font-size: 24px;
 	font-weight: 600;
 	margin-top: 9px;
-	color: #8a8a8a;
+	color: #f2e9e9;
 }
 .in_stock_container
 {
@@ -967,7 +967,7 @@ section
 {
 	font-size: 24px;
 	font-weight: 500;
-	color: #1b1b1b;
+	color: #ededed;
 	margin-top: -9px;
 }
 .details_discount
@@ -982,9 +982,9 @@ section
 .details_price
 {
 	display: inline-block;
-	font-size: 16px;
+	font-size: 20px;
 	font-weight: 500;
-	color: #6c6a74;
+	color: #ccedc7;
 	margin-top: 12px;
 }
 .details_size
@@ -992,12 +992,12 @@ section
 	display: inline-block;
 	font-size: 16px;
 	font-weight: 500;
-	color: #6c6a74;
-	margin-top: 12px;
+	color: #ededed;
+	margin-top: 6px;
 }
 .details_text
 {
-	margin-top: 49px;
+	margin-top: 36px;
 }
 .details_text p
 {
@@ -1161,7 +1161,7 @@ section
 	display: inline-block;
 	font-size: 24px;
 	font-weight: 500;
-	color: #1b1b1b;
+	color: #a3a3a3;
 }
 .reviews_title
 {

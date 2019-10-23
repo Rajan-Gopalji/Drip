@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Cart;
 use App\Multi_image;
 use App\Post;
 use App\User;
@@ -183,7 +184,9 @@ class PostsController extends Controller
         $postsIm = Post::whereIn('id', $mImage)->paginate(5);
 //        dd($postsIm);
 //        $mImage = Post::with('multi_image')->get();
-        return view('posts.show', compact('post', 'mImage'));
+        $user_id = auth()->user()->id;
+        $duplicate = Cart::where(['user_id' => $user_id, 'post_id' => $postId])->exists();
+        return view('posts.show', compact('post', 'mImage', 'duplicate'));
     }
 
 }

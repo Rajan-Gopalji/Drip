@@ -39,7 +39,7 @@ body
 	font-family: 'Poppins', sans-serif;
 	font-size: 14px;
 	font-weight: 400;
-	background: #FFFFFF;
+	background: #4f4d4d;
 	color: #a5a5a5;
 }
 div
@@ -105,11 +105,11 @@ p a:hover::after
 }
 ::selection
 {
-	
+
 }
 p::selection
 {
-	
+
 }
 h1{font-size: 48px;}
 h2{font-size: 36px;}
@@ -123,14 +123,14 @@ h1, h2, h3, h4, h5, h6
 	-webkit-text-shadow: rgba(0,0,0,.01) 0 0 1px;
 	text-shadow: rgba(0,0,0,.01) 0 0 1px;
 }
-h1::selection, 
-h2::selection, 
-h3::selection, 
-h4::selection, 
-h5::selection, 
+h1::selection,
+h2::selection,
+h3::selection,
+h4::selection,
+h5::selection,
 h6::selection
 {
-	
+
 }
 .form-control
 {
@@ -335,7 +335,7 @@ section
 {
 	font-size: 30px;
 	font-weight: 700;
-	color: #1b1b1b;
+	color: #aba4a4;
 	-webkit-transition: all 200ms ease;
 	-moz-transition: all 200ms ease;
 	-ms-transition: all 200ms ease;
@@ -575,9 +575,9 @@ section
 	font-weight: 400 !important;
 	font-style: italic;
 	color: #767676 !important;
-} 
+}
 .search_input:-ms-input-placeholder
-{ 
+{
 	font-size: 14px !important;
 	font-weight: 400 !important;
 	font-style: italic;
@@ -884,8 +884,9 @@ section
 .cart_info
 {
 	width: 100%;
-	background: #FFFFFF;
-	padding-top: 96px;
+	/*background: #FFFFFF;*/
+    background: #4f4d4d;
+    padding-top: 96px;
 	z-index: 2;
 }
 .cart_info_columns
@@ -897,9 +898,9 @@ section
 .cart_info_col
 {
 	float: left;
-	font-size: 14px;
-	font-weight: 400;
-	color: #1b1b1b;
+	font-size: 20px;
+	font-weight: 600;
+	color: #a5a5a5;
 }
 .cart_info_col_product
 {
@@ -997,7 +998,7 @@ section
 }
 .product_quantity_container
 {
-	
+
 }
 .product_quantity
 {
@@ -1046,7 +1047,7 @@ section
 	height: 100%;
 	width: 29px;
 }
-.quantity_inc, 
+.quantity_inc,
 .quantity_dec
 {
 	display: -webkit-box;
@@ -1138,7 +1139,7 @@ section
 {
 	font-size: 14px;
 	font-weight: 400;
-	color: #6c6a74;
+	color: #a5a5a5;
 	margin-top: 3px;
 }
 .delivery_options
@@ -1157,7 +1158,7 @@ section
     user-select: none;
     font-size: 14px;
     font-weight: 400;
-    color: #1b1b1b;
+    color: #a5a5a5;
 }
 .delivery_option:not(:last-child)
 {
@@ -1245,7 +1246,7 @@ label
 }
 .coupon_button:hover span
 {
-	color: #FFFFFF;
+	color: #1b1b1b;
 }
 .cart_total_container
 {
@@ -1254,7 +1255,7 @@ label
 	padding-top: 20px;
 	padding-right: 44px;
 	padding-bottom: 19px;
-	background: #f2f4f8;
+	background: #454343;
 }
 .cart_total_container ul
 {
@@ -1269,13 +1270,13 @@ label
 {
 	font-size: 14px;
 	font-weight: 400;
-	color: #1b1b1b;
+	color: #a5a5a5;
 }
 .cart_total_value
 {
 	font-size: 14px;
 	font-weight: 400;
-	color: #1b1b1b;
+	color: #a5a5a5;
 	float: right;
 }
 .checkout_button
