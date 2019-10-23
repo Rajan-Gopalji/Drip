@@ -4,19 +4,25 @@
     <head>
         <link rel="stylesheet" href="{{ asset('css/product.css') }}">
         <link rel="stylesheet" href="{{ asset('css/product_responsive.css') }}">
+        <link href="{{ asset('css/main_styles.css') }}" rel="stylesheet">
     </head>
 <div class="container">
     <div class="row">
         <!-- Other images -->
         <div class="col-2">
+            <div class="details_image_thumbnail" data-image=""><img src="/storage/{{$post->image}}" alt=""></div>
+        @foreach($mImage as $image)
             <div class="details_image">
                 <div class="details_image_thumbnails d-flex flex-row align-items-start justify-content-between">
-                    <div class="details_image_thumbnail" data-image=""><img src=/storage/{{ $post->image }} alt=""></div>
+                    <div class="details_image_thumbnail" data-image=""><img src="{{ URL::to('/') }}/images/{{$image }}" alt=""></div>
                 </div>
             </div>
+            @endforeach
         </div>
         <div class="col-5">
-            <img src="/storage/{{ $post->image }}" class="w-100">
+{{--            {{dd($mImage->image)}}--}}
+            <img src="/storage/{{$post->image}}" class="w-100">
+{{--            <img src="{{ URL::to('/') }}/images/{{$mImage->first() }}" class="w-100">--}}
         </div>
         <div class="col-5">
             <div>
@@ -38,7 +44,7 @@
 
                 <p>
                     <span class="font-weight-bold">
-                            <span class="text-dark">{{ $post->caption }}</span>
+                            <span class="text-light">{{ $post->caption }}</span>
                     </span>
                 </p>
                 <p>

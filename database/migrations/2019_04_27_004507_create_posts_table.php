@@ -29,6 +29,10 @@ class CreatePostsTable extends Migration
 
             $table->index('user_id');
         });
+
+        Schema::multiImage('multi_image', function (Blueprint $table) {
+            $table->unsignedBigInteger(post_id);
+        });
     }
 
     /**

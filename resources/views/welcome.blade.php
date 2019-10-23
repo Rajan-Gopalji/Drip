@@ -1,4 +1,4 @@
-<!doctype html>
+multiple_file_upload.blade.php<!doctype html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
     <head>
         <meta charset="utf-8">

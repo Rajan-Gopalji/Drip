@@ -2,10 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Multi_image;
 use App\Post;
 use App\User;
+//use DB;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Intervention\Image\Facades\Image;
+use function Sodium\compare;
 
 class PostsController extends Controller
 {
@@ -20,7 +24,35 @@ class PostsController extends Controller
 
         $posts = Post::whereIn('user_id', $users)->with('user')->latest()->paginate(5);
 
-        return view('posts.index', compact('posts'));
+        $postId = auth()->user()->posts()->pluck('posts.id');
+
+//        dd($postId);
+
+//        $mImage = DB::table('multi_image')->where('post_id', $postId)->pluck('multi_image.post_id');
+//        $mImage = Multi_image::whereIn('post_id', $postId)->with('post')->paginate(999);
+        $mImage = Multi_image::all();
+//        $mImage = DB::select('SELECT image FROM multi_image');
+
+
+//        $imageSelect = DB::select('SELECT image FROM multi_image WHERE post_id = 4 LIMIT 1');
+
+        $posst = 4;
+        $imageSelect = DB::table('multi_image')
+            ->where('post_id', $posst)->first();
+
+//        dd($imageSelect->image);
+
+//        foreach ($imageSelect as $mimage){
+//            dd($mimage->image);
+//        }
+
+//        dd($mImage[2]->post_id);
+//        foreach ($mImage as $mimage){
+//        dd($mimage->image);
+//        }
+//        $mImage = Post::with('multi_image')->get();
+
+        return view('posts.index', compact('posts','mImage', 'imageSelect'));
     }
 
     public function create()
@@ -28,7 +60,7 @@ class PostsController extends Controller
         return view('posts.create');
     }
 
-    public function store()
+    public function store(Request $request, Post $post, User $user)
     {
         $data = request()->validate([
             'caption' => 'required',
@@ -43,7 +75,6 @@ class PostsController extends Controller
         ]);
 
         $imagePath = request('image')->store('uploads', 'public');
-
         $image = Image::make(public_path("storage/{$imagePath}"))->fit(1200, 1200);
         $image->save();
 
@@ -59,6 +90,30 @@ class PostsController extends Controller
             'image' => $imagePath,
         ]);
 
+        $last_id = DB::getPDO()->lastInsertId();
+//        dd($last_id);
+        if($request->hasFile('images'))
+        {
+            $image_array = $request->file('images');
+
+            $array_len = count($image_array);
+            for($i=0; $i<$array_len; $i++)
+            {
+                $image_ext = $image_array[$i]->getClientOriginalExtension();
+
+                $new_image_name = rand().".".$image_ext;
+                $destination_path = public_path('/images');
+
+                $image_array[$i]->move($destination_path, $new_image_name);
+
+                $multi_image = new multi_image;
+                $multi_image->post_id = $last_id;
+                $multi_image->image = $new_image_name;
+                $multi_image->save();
+            }
+
+//            return redirect()->back()->with('msg', 'all done');
+        }
         return redirect('/profile/' . auth()->user()->id);
     }
 
@@ -102,7 +157,7 @@ class PostsController extends Controller
 
 
         if (request('image')) {
-            $imagePath = request('image')->store('profile', 'public');
+            $imagePath = request('image')->store('uploads', 'public');
 
             $image = Image::make(public_path("storage/{$imagePath}"))->fit(1000, 1000);
             $image->save();
@@ -120,7 +175,15 @@ class PostsController extends Controller
 
     public function show(\App\Post $post)
     {
-        return view('posts.show', compact('post'));
+        $postId = $post->id;
+//        dd($postId);
+//        $mImage = auth()->user()->posts()->pluck('multi_image.post_id');
+        $mImage = DB::table('multi_image')->where('post_id', $postId)->pluck('image');
+//        dd($mImage);
+        $postsIm = Post::whereIn('id', $mImage)->paginate(5);
+//        dd($postsIm);
+//        $mImage = Post::with('multi_image')->get();
+        return view('posts.show', compact('post', 'mImage'));
     }
 
 }

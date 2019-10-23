@@ -4,17 +4,15 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Post extends Model
+class Cart extends Model
 {
-    protected $guarded = [];
-
     public function user()
     {
         return $this->belongsTo(User::class);
     }
 
-    public function images()
+    public function posts()
     {
-        return $this->hasMany(Multi_image::class);
+        return $this->hasMany(Post::class)->orderBy('created_at', 'DESC');
     }
 }

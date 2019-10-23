@@ -16,13 +16,15 @@
                                 </span>
                         </div>
                         <a href="/p/{{ $post->id }}">
-                            <img src="/storage/{{ $post->image }}" class="w-100">
+{{--                            @foreach($mImage as $image)--}}
+                                <img src="/storage/{{ public_path($post->image) }}" class="w-100">
+{{--                            @endforeach--}}
                             <div class="pt-2">
                                         <span class="text-dark pl-2">
                                             <b>{{ $post->caption }}</b>
                                         </span>
                                 <span class="text-success float-right pr-2">
-                                            £45.00
+                                            £{{ $post->price }}
                                         </span>
                             </div>
                         </a>

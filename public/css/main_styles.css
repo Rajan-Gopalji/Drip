@@ -43,7 +43,7 @@ body
 	font-family: 'Poppins', sans-serif;
 	font-size: 14px;
 	font-weight: 400;
-	/*background: #4f4d4d;*/
+	background: #4f4d4d;
 	color: #a5a5a5;
 }
 div
@@ -65,7 +65,7 @@ p
 	font-size: 14px;
 	line-height: 2.14;
 	font-weight: 400;
-	color: #6c6a74;
+	color: #edebeb;
 	-webkit-font-smoothing: antialiased;
 	-webkit-text-shadow: rgba(0,0,0,.01) 0 0 1px;
 	text-shadow: rgba(0,0,0,.01) 0 0 1px;
@@ -315,7 +315,7 @@ section
 {
 	width: 100%;
 	z-index: 1;
-	/*background: #333131;*/
+	background: #333131;
 }
 .header_content
 {
@@ -335,7 +335,7 @@ section
 {
 	font-size: 30px;
 	font-weight: 700;
-	color: #1b1b1b;
+	color: #aba4a4;
 	-webkit-transition: all 200ms ease;
 	-moz-transition: all 200ms ease;
 	-ms-transition: all 200ms ease;
