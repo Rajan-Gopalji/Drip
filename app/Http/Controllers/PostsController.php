@@ -157,6 +157,32 @@ class PostsController extends Controller
             'image' => '',
         ]);
 
+//        $last_id = DB::getPDO()->lastInsertId();
+        $last_id = $post->id;
+//        dd($last_id);
+        if($request->hasFile('images'))
+        {
+            $image_array = $request->file('images');
+
+            $array_len = count($image_array);
+            for($i=0; $i<$array_len; $i++)
+            {
+                $image_ext = $image_array[$i]->getClientOriginalExtension();
+
+                $new_image_name = rand().".".$image_ext;
+                $destination_path = public_path('storage/uploads');
+//                $destination_path = request('image')->store('uploads', 'public');
+
+                $image_array[$i]->move($destination_path, $new_image_name);
+
+                $multi_image = new multi_image;
+                $multi_image->post_id = $last_id;
+                $multi_image->image = $new_image_name;
+                $multi_image->save();
+            }
+
+//            return redirect()->back()->with('msg', 'all done');
+        }
 
         if (request('image')) {
             $imagePath = request('image')->store('uploads', 'public');

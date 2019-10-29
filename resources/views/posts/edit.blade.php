@@ -200,13 +200,23 @@
                     @endif
                 </div>
 
-                <div class="row">
-                    <label for="image" class="col-md-4 col-form-label">Post Image</label>
+                <div class="form-group row">
+                    <label for="image" class="col-md-4 col-form-label">Main Post Image</label>
 
                     <input type="file" class="form-control-file" id="image" name="image">
 
                     @if ($errors->has('image'))
                         <strong>{{ $errors->first('image') }}</strong>
+                    @endif
+                </div>
+
+                <div class="form-group row">
+                    <label for="images" class="col-md-4 col-form-label">Additional Images</label>
+
+                    <input type="file" class="form-control-file" id="images" name="images[]" multiple>
+
+                    @if ($errors->has('images'))
+                        <strong>{{ $errors->first('images') }}</strong>
                     @endif
                 </div>
 

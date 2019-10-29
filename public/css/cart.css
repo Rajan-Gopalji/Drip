@@ -1286,6 +1286,7 @@ label
 .checkout_button
 {
 	width: 100%;
+    float: right;
 }
 
 /*********************************

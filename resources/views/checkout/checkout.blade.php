@@ -34,7 +34,7 @@
                                     <label for="checkout_country">Country*</label>
                                     <select name="checkout_country" id="checkout_country" class="dropdown_item_select checkout_input" require="required">
                                         <option></option>
-                                        <option>Lithuania</option>
+                                        <option>United States</option>
                                         <option>Sweden</option>
                                         <option>UK</option>
                                         <option>Italy</option>

@@ -9,11 +9,11 @@
     <div class="row">
         <!-- Other images -->
         <div class="col-2">
-            <div class="details_image_thumbnail" data-image=""><img src="/storage/{{$post->image}}" alt=""></div>
+            <div class="details_image_thumbnail" data-image="/storage/{{$post->image}}"><img src="/storage/{{$post->image}}" alt=""></div>
         @foreach($mImage as $image)
             <div class="details_image">
                 <div class="details_image_thumbnails d-flex flex-row align-items-start justify-content-between">
-                    <div class="details_image_thumbnail" data-image="">
+                    <div class="details_image_thumbnail" data-image="/storage/uploads/{{$image}}">
 {{--                        <img src="{{ URL::to('/') }}/images/{{$image }}" alt="">--}}
                         <img src="/storage/uploads/{{$image}}" alt="">
                     </div>
