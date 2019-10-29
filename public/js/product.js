@@ -19,7 +19,7 @@ $(document).ready(function()
 {
 	"use strict";
 
-	/* 
+	/*
 
 	1. Vars and Inits
 
@@ -47,7 +47,7 @@ $(document).ready(function()
 	initQuantity();
 	initIsotope();
 
-	/* 
+	/*
 
 	2. Set Header
 
@@ -65,7 +65,7 @@ $(document).ready(function()
 		}
 	}
 
-	/* 
+	/*
 
 	3. Init Search
 
@@ -85,7 +85,7 @@ $(document).ready(function()
 		}
 	}
 
-	/* 
+	/*
 
 	4. Init Menu
 
@@ -104,7 +104,7 @@ $(document).ready(function()
 				if(!menuActive)
 				{
 					openMenu();
-					
+
 					$(document).one('click', function cls(e)
 					{
 						if($(e.target).hasClass('menu_mm'))
@@ -177,7 +177,7 @@ $(document).ready(function()
 		menuActive = false;
 	}
 
-	/* 
+	/*
 
 	5. Init Image
 
@@ -187,6 +187,7 @@ $(document).ready(function()
 	{
 		var images = $('.details_image_thumbnail');
 		var selected = $('.details_image_large img');
+        // var selected = $('.details_image_large img').attr('src');
 
 		images.each(function()
 		{
@@ -195,13 +196,14 @@ $(document).ready(function()
 			{
 				var imagePath = new String(image.data('image'));
 				selected.attr('src', imagePath);
+				console.log(imagePath);
 				images.removeClass('active');
 				image.addClass('active');
 			});
 		});
 	}
 
-	/* 
+	/*
 
 	6. Init Quantity
 
@@ -238,7 +240,7 @@ $(document).ready(function()
 		}
 	}
 
-	/* 
+	/*
 
 	7. Init Isotope
 

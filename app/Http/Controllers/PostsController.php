@@ -103,7 +103,8 @@ class PostsController extends Controller
                 $image_ext = $image_array[$i]->getClientOriginalExtension();
 
                 $new_image_name = rand().".".$image_ext;
-                $destination_path = public_path('/images');
+                $destination_path = public_path('storage/uploads');
+//                $destination_path = request('image')->store('uploads', 'public');
 
                 $image_array[$i]->move($destination_path, $new_image_name);
 

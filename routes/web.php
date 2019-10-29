@@ -38,6 +38,8 @@ Route::get('/profile/{user}/cart', 'CartController@index')->name('cart.index');
 Route::get('/cart/destroy/{post_id}', 'CartController@destroy')->name('cart.destroy');
 Route::get( '/cart/add/{post_id}', 'CartController@add' )->name('cart.add');
 
+Route::get('/{user}/cart/checkout', 'CheckoutController@index')->name('checkout.index');
+
 
 Route::get('/profile/{user}', 'ProfilesController@index')->name('profile.show');
 Route::get('/profile/{user}/manage', 'ProfilesController@manage')->name('profile.show');

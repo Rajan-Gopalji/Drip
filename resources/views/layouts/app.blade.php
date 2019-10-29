@@ -16,12 +16,15 @@
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet" type="text/css">
 
     <!-- Styles -->
+    <link href="{{ asset('plugins/font-awesome-4.7.0/css/font-awesome.min.css')}}" rel="stylesheet">
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link href="{{ asset('css/main_styles.css') }}" rel="stylesheet">
     <link href="{{ asset('css/responsive.css') }}" rel="stylesheet">
 
 
     <!-- Scripts -->
+    <script src="{{ asset('plugins/greensock/TweenMax.min.js')}}"></script>
+    <script src="{{ asset('plugins/greensock/TweenMax.min.js')}}"></script>
     <script src="{{ asset('js/app.js') }}" defer></script>
     <script src="{{ asset('js/jquery-3.1.1.min.js') }}" defer></script>
     <script src="{{ asset('js/product.js') }}" defer></script>
@@ -103,34 +106,35 @@
                         <li class="page_menu_item has-children menu_mm">
                             <a href="men.php">Men<i class="fa fa-angle-down"></i></a>
                             <ul class="page_menu_selection menu_mm">
-                                <li class="page_menu_item menu_mm"><a href="men.php">All Products<i class="fa fa-angle-down"></i></a></li>
-                                <li class="page_menu_item menu_mm"><a href="product.html">Jackets<i class="fa fa-angle-down"></i></a></li>
-                                <li class="page_menu_item menu_mm"><a href="categories.html">Trousers<i class="fa fa-angle-down"></i></a></li>
+                                <li class="page_menu_item menu_mm"><a href="/men">All Products<i class="fa fa-angle-down"></i></a></li>
+{{--                                <li class="page_menu_item menu_mm"><a href="product.html">Jackets<i class="fa fa-angle-down"></i></a></li>--}}
+{{--                                <li class="page_menu_item menu_mm"><a href="categories.html">Trousers<i class="fa fa-angle-down"></i></a></li>--}}
                             </ul>
                         </li>
                         <li class="page_menu_item has-children menu_mm">
                             <a href="index.html">Women<i class="fa fa-angle-down"></i></a>
                             <ul class="page_menu_selection menu_mm">
-                                <li class="page_menu_item menu_mm"><a href="women.php">All Products<i class="fa fa-angle-down"></i></a></li>
-                                <li class="page_menu_item menu_mm"><a href="product.html">Jackets<i class="fa fa-angle-down"></i></a></li>
-                                <li class="page_menu_item menu_mm"><a href="categories.html">Trousers<i class="fa fa-angle-down"></i></a></li>
+                                <li class="page_menu_item menu_mm"><a href="/women">All Products<i class="fa fa-angle-down"></i></a></li>
+{{--                                <li class="page_menu_item menu_mm"><a href="product.html">Jackets<i class="fa fa-angle-down"></i></a></li>--}}
+{{--                                <li class="page_menu_item menu_mm"><a href="categories.html">Trousers<i class="fa fa-angle-down"></i></a></li>--}}
                             </ul>
                         </li>
+{{--                        <li class="page_menu_item has-children menu_mm">--}}
+{{--                            <a href="categories.html">Categories<i class="fa fa-angle-down"></i></a>--}}
+{{--                            <ul class="page_menu_selection menu_mm">--}}
+{{--                                <li class="page_menu_item menu_mm"><a href="categories.html">Jackets<i class="fa fa-angle-down"></i></a></li>--}}
+{{--                                <li class="page_menu_item menu_mm"><a href="categories.html">Trousers<i class="fa fa-angle-down"></i></a></li>--}}
+{{--                            </ul>--}}
+{{--                        </li>--}}
+                        <li class="page_menu_item menu_mm"><a href="/p/create">Sell Your Own<i class="fa fa-angle-down"></i></a></li>
+                        <li class="page_menu_item menu_mm"><a href="/profile/{{Auth::user()->id}}/manage">Manage Stock<i class="fa fa-angle-down"></i></a></li>
                         <li class="page_menu_item has-children menu_mm">
-                            <a href="categories.html">Categories<i class="fa fa-angle-down"></i></a>
+                            <a href="#">My Profile<i class="fa fa-angle-down"></i></a>
                             <ul class="page_menu_selection menu_mm">
-                                <li class="page_menu_item menu_mm"><a href="categories.html">Jackets<i class="fa fa-angle-down"></i></a></li>
-                                <li class="page_menu_item menu_mm"><a href="categories.html">Trousers<i class="fa fa-angle-down"></i></a></li>
-                            </ul>
-                        </li>
-                        <li class="page_menu_item menu_mm"><a href="selling.php">Sell Your Own<i class="fa fa-angle-down"></i></a></li>
-                        <li class="page_menu_item menu_mm"><a href="managestock.php">Manage Stock<i class="fa fa-angle-down"></i></a></li>
-                        <li class="page_menu_item has-children menu_mm">
-                            <a href="categories.html">My Profile<i class="fa fa-angle-down"></i></a>
-                            <ul class="page_menu_selection menu_mm">
-                                <li class="page_menu_item menu_mm"><a href="myprofile.php">Profile<i class="fa fa-angle-down"></i></a></li>
-                                <li class="page_menu_item menu_mm"><a href="form.php">Update Details<i class="fa fa-angle-down"></i></a></li>
-                                <li class="page_menu_item menu_mm"><a href="logout.php">Log out<i class="fa fa-angle-down"></i></a></li>
+                                <li class="page_menu_item menu_mm"><a href="/profile/{{Auth::user()->id}}">Profile<i class="fa fa-angle-down"></i></a></li>
+                                <li class="page_menu_item menu_mm"><a href="/profile/{{Auth::user()->id}}/edit">Update Details<i class="fa fa-angle-down"></i></a></li>
+                                <li class="page_menu_item menu_mm"><a href="{{ route('logout') }}" onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();">{{ __('Log Out') }}<i class="fa fa-angle-down"></i></a></li>
                             </ul>
                         </li>
                         @endauth

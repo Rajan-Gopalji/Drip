@@ -22,6 +22,11 @@ class CartController extends Controller
         foreach ($posts as $postPrice){
             $total = $total + $postPrice->price;
         }
+
+        $totalShipping = $total;
+        if ($total < 100){
+            $totalShipping = $totalShipping + 4.99;
+        }
 //        dd($total);
 //        $cart_user_id = DB::table('carts')->pluck('user_id');
 //        $cart_post_id = DB::table('carts')->pluck('post_id');
@@ -39,7 +44,7 @@ class CartController extends Controller
 //        $posts = Post::whereIn('user_id', $cart_user_id);
 //        dd($posts);
 
-        return view('checkout.cart', compact('user', 'posts', 'mImage', 'total'));
+        return view('checkout.cart', compact('user', 'posts', 'mImage', 'total', 'totalShipping'));
     }
 
     public function destroy($post_id)

@@ -4,7 +4,16 @@
     {{--        <link href="{{ asset('css/main_styles.css') }}" rel="stylesheet">--}}
     <link href="{{ asset('css/cart.css')}}" rel="stylesheet">
     {{--        <link rel="stylesheet" type="text/css" href="{{ asset('css/cart_responsive.css')}}styles/cart_responsive.css">--}}
+{{--    <script>--}}
+{{--        function myFunction() {--}}
+{{--            var delivery = document.getElementById("nextDay").checked;--}}
+{{--            if (delivery === true){--}}
+{{--                {{$total = $total + 4}}--}}
+{{--            }--}}
+{{--        }--}}
+{{--    </script>--}}
 </head>
+
 @section('content')
     <!-- Cart Info -->
     <div class="cart_info">
@@ -76,27 +85,31 @@
 
                     <!-- Delivery -->
                     <div class="delivery">
-                        <div class="section_title">Shipping method</div>
-                        <div class="section_subtitle">Select your delivery option</div>
+                        <div class="section_title">Shipping Charge</div>
+{{--                        <div class="section_subtitle">Select your delivery option</div>--}}
                         <div class="delivery_options">
-                            <label class="delivery_option clearfix">Next day delivery
-                                <input type="radio" name="radio">
-                                <span class="checkmark"></span>
-                                <span class="delivery_price">£4.99</span>
-                            </label>
-                            <label class="delivery_option clearfix">Standard delivery
-                                <input type="radio" name="radio">
-                                <span class="checkmark"></span>
-                                <span class="delivery_price">£1.99</span>
-                            </label>
-                            <label class="delivery_option clearfix">Personal pickup
-                                <input type="radio" checked="checked" name="radio">
-                                <span class="checkmark"></span>
-                                <span class="delivery_price">Free</span>
-                            </label>
+{{--                            <label class="delivery_option clearfix">Next day delivery--}}
+{{--                                <input type="radio" name="radio" id="nextDay" value="4.99">--}}
+{{--                                <span class="checkmark"></span>--}}
+{{--                                <span class="delivery_price">£4.99</span>--}}
+{{--                            </label>--}}
+{{--                            <label class="delivery_option clearfix">Standard delivery--}}
+{{--                                <input type="radio" name="radio" id="free" value="0.00">--}}
+{{--                                <span class="checkmark"></span>--}}
+{{--                                <span class="delivery_price">Free</span>--}}
+{{--                            </label>--}}
+                            <p>
+                                Orders over <b id="price">£100</b> are given <b id="price">FREE next day delivery</b>
+                                <br>
+                                <br>
+                                @if($total < 100)
+                                    Your order value comes to £{{$total}} so delivery is £4.99 for standard delivery
+                                    @else
+                                    Your order value comes to £{{$total}} so delivery is FREE!
+                                @endif
+                            </p>
                         </div>
                     </div>
-
                     <!-- Coupon Code -->
 {{--                    <div class="coupon">--}}
 {{--                        <div class="section_title">Coupon code</div>--}}
@@ -122,18 +135,23 @@
                                 </li>
                                 <li class="d-flex flex-row align-items-center justify-content-start">
                                     <div class="cart_total_title">Shipping</div>
-                                    <div class="cart_total_value ml-auto">Free</div>
+                                    @if($total < 100)
+                                        <div class="cart_total_value ml-auto">£4.99</div>
+                                    @else
+                                        <div class="cart_total_value ml-auto">Free</div>
+                                    @endif
                                 </li>
                                 <li class="d-flex flex-row align-items-center justify-content-start">
                                     <div class="cart_total_title">Total</div>
-                                    <div class="cart_total_value ml-auto">£{{$total}}</div>
+                                    <div class="cart_total_value ml-auto">£{{$totalShipping}}</div>
                                 </li>
                             </ul>
                         </div>
-                        <div class="button checkout_button"><a href="#">Proceed to checkout</a></div>
+                        <div class="button checkout_button"><a href="/{{Auth::user()->id}}/cart/checkout">Proceed to checkout</a></div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+{{--    <script src="{{ asset('js/delivery.js') }}" defer></script>--}}
 @endsection
