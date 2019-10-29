@@ -33,6 +33,11 @@
             </div>
             <div class="row cart_items_row">
                 <div class="col">
+                    @if($total == 0)
+                        <p>
+                            No Items in Cart
+                        </p>
+                        @else
                 @foreach($posts as $post)
                     <!-- Cart Item -->
                     <div class="cart_item d-flex flex-lg-row flex-column align-items-lg-center align-items-start justify-content-start">
@@ -67,6 +72,7 @@
                     <!-- <div class="cart_item_total">£</div> -->
                     </div>
                     @endforeach
+                        @endif
                 </div>
             </div>
             <div class="row row_cart_buttons">

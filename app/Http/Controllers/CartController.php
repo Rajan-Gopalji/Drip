@@ -16,7 +16,7 @@ class CartController extends Controller
 
         $user = auth()->user()->cart()->pluck('carts.post_id');
         $posts = Post::whereIn('id', $user)->paginate(5);
-        $mImage = DB::table('multi_image')->where('post_id', $user)->pluck('image');
+//        $mImage = DB::table('multi_image')->where('post_id', $user)->pluck('image');
 
         $total = 0;
         foreach ($posts as $postPrice){
