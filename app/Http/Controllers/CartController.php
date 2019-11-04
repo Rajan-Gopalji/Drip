@@ -61,6 +61,16 @@ class CartController extends Controller
         return back()->with('success', 'Post Updated');
     }
 
+    public function clear()
+    {
+        $user_id = auth()->user()->id;
+
+        $posts = DB::select( DB::raw("DELETE FROM carts WHERE user_id = '$user_id'"));
+//        dd($posts);
+
+        return back()->with('success', 'Post Updated');
+    }
+
     public function add($post_id)
     {
         $user_id = auth()->user()->id;

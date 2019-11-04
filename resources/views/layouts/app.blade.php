@@ -24,10 +24,11 @@
 
     <!-- Scripts -->
     <script src="{{ asset('plugins/greensock/TweenMax.min.js')}}"></script>
-    <script src="{{ asset('plugins/greensock/TweenMax.min.js')}}"></script>
+{{--    <script src="{{ asset('plugins/greensock/TweenMax.min.js')}}"></script>--}}
     <script src="{{ asset('js/app.js') }}" defer></script>
     <script src="{{ asset('js/jquery-3.1.1.min.js') }}" defer></script>
     <script src="{{ asset('js/product.js') }}" defer></script>
+    @yield('scripts')
 </head>
 <body>
     <div id="app">

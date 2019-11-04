@@ -25,7 +25,7 @@ Route::get('/', 'PostsController@index');
 Route::get('/p/create', 'PostsController@create');
 //Route::get('/ImageUpload/{last_id}', 'testcontroller@index');
 Route::post('/p', 'PostsController@store');
-Route::get('/men', 'CategoryController@men');
+Route::get('/men', 'CategoryController@men')->name('posts.men');
 Route::get('/women', 'CategoryController@women');
 Route::get('/p/{post}', 'PostsController@show');
 Route::get('/profile/{user}/p/{post}/edit', 'PostsController@edit');
@@ -36,9 +36,13 @@ Route::get('/profile/{user}/destroy/{id}', 'PostsController@destroy')->name('pos
 
 Route::get('/profile/{user}/cart', 'CartController@index')->name('cart.index');
 Route::get('/cart/destroy/{post_id}', 'CartController@destroy')->name('cart.destroy');
+Route::get('/cart/clear/{user_id}', 'CartController@clear')->name('cart.clear');
 Route::get( '/cart/add/{post_id}', 'CartController@add' )->name('cart.add');
 
 Route::get('/{user}/cart/checkout', 'CheckoutController@index')->name('checkout.index');
+//Route::post('/checkout', 'CheckoutController@postCheckout')->name('checkout.postCheckout');
+//Route::post('/processed', 'CheckoutController@processed')->name('checkout.processed');
+
 
 
 Route::get('/profile/{user}', 'ProfilesController@index')->name('profile.show');

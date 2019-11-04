@@ -80,7 +80,7 @@
                     <div class="cart_buttons d-flex flex-lg-row flex-column align-items-start justify-content-start">
                         <div class="button continue_shopping_button"><a href="/">Continue shopping</a></div>
                         <div class="cart_buttons_right ml-lg-auto">
-                            <div class="button clear_cart_button"><a href="#">Clear cart</a></div>
+                            <div class="button clear_cart_button"><a href="{{ route('cart.clear', ['user_id' => Auth::user()->id]) }}">Clear cart</a></div>
                             <div class="button update_cart_button"><a href="/profile/{{Auth::user()->id}}/cart">Update cart</a></div>
                         </div>
                     </div>
