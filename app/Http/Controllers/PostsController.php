@@ -25,6 +25,10 @@ class PostsController extends Controller
 
         $posts = Post::whereIn('user_id', $users)->with('user')->latest()->paginate(5);
 
+        $small = DB::table('posts')->where('size', 'small')->pluck('id');
+
+//        dd($small);
+
         $postId = auth()->user()->posts()->pluck('posts.id');
 
 //        dd($postId);
@@ -37,9 +41,11 @@ class PostsController extends Controller
 
 //        $imageSelect = DB::select('SELECT image FROM multi_image WHERE post_id = 4 LIMIT 1');
 
-        $posst = 4;
-        $imageSelect = DB::table('multi_image')
-            ->where('post_id', $posst)->first();
+//        $posst = 4;
+//        $imageSelect = DB::table('multi_image')
+//            ->where('post_id', $posst)->first();
+
+
 
 //        dd($imageSelect->image);
 

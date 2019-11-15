@@ -20,12 +20,12 @@
                     </div>
                     <img src="/storage/{{ $post->image }}" class="w-100">
                     <div>
-                        <div class="text-left pl-2">
+                        <div class="text-left">
                             <a href="/profile/{{Auth::user()->id}}/p/{{$post->id}}/edit" class="block">Update</a>
                         </div>
                     </div>
                     <div class="pt-2">
-                                        <span class="text-dark pl-2">
+                                        <span class="text-light pl-2">
                                             <b>{{ $post->caption }}</b>
                                         </span>
                         <span class="text-success float-right pr-2">

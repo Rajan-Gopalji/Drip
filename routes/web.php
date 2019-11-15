@@ -41,7 +41,7 @@ Route::get( '/cart/add/{post_id}', 'CartController@add' )->name('cart.add');
 
 Route::get('/{user}/cart/checkout', 'CheckoutController@index')->name('checkout.index');
 //Route::post('/checkout', 'CheckoutController@postCheckout')->name('checkout.postCheckout');
-//Route::post('/processed', 'CheckoutController@processed')->name('checkout.processed');
+Route::get('{user}/purchased', 'CheckoutController@purchased')->name('checkout.purchased');
 
 
 

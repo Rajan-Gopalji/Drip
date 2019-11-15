@@ -931,7 +931,11 @@ section
 }
 .cart_item_price
 {
-	width: 10%;
+    /*font-size: 16px;*/
+    width: 10%;
+}
+#pricey{
+    font-size: 16px;
 }
 .cart_item_quantity
 {

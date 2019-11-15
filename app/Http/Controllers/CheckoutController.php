@@ -38,6 +38,24 @@ class CheckoutController extends Controller
         return $request->all();
     }
 
+    public function purchased(User $user)
+    {
+        $user_id = auth()->user()->id;
+
+        $this->authorize('update', $user->profile);
+
+        $user = auth()->user()->cart()->pluck('carts.post_id');
+        $posts = Post::whereIn('id', $user)->paginate(5);
+        foreach($posts as $post) {
+            $postsCart = DB::select( DB::raw("UPDATE posts SET sold = 'y' WHERE id = '$post->id'"));
+        }
+
+        $clear = DB::select( DB::raw("DELETE FROM carts WHERE user_id = '$user_id'"));
+
+
+        return view('checkout.purchased');
+    }
+
 //    public function postCheckout(Request $request, User $user)
 //    {
 //

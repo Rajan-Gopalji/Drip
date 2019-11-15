@@ -1,4 +1,5 @@
 @extends('layouts.app')
+<link href="{{ asset('css/sold.css')}}" rel="stylesheet">
 
 @section('content')
     <div class="container">
@@ -15,19 +16,33 @@
                                     </a>
                                 </span>
                         </div>
-                        <a href="/p/{{ $post->id }}">
-{{--                            @foreach($mImage as $image)--}}
-                                <img src="/storage/{{ public_path($post->image) }}" class="w-100">
-{{--                            @endforeach--}}
+
+                        @if($post->sold == 'y')
+                            <img id="greyout" src="/storage/{{$post->image}}" class="w-100">
+                            <img id="sold" src="https://www.sticker.com/picture_library/product_images/real-estate-stickers/74125_sold-small-rectangles-red-and-white-stickers-and-labels.png">
                             <div class="pt-2">
-                                        <span class="text-dark pl-2">
+                                        <span class="text-light pl-2">
                                             <b>{{ $post->caption }}</b>
                                         </span>
                                 <span class="text-success float-right pr-2">
-                                            £{{ $post->price }}
-                                        </span>
+                                    £{{ $post->price }}
+                                </span>
                             </div>
-                        </a>
+                        @else
+                            <a href="/p/{{ $post->id }}">
+    {{--                            @foreach($mImage as $image)--}}
+                                    <img src="/storage/{{ public_path($post->image) }}" class="w-100">
+    {{--                            @endforeach--}}
+                                <div class="pt-2">
+                                            <span class="text-dark pl-2">
+                                                <b>{{ $post->caption }}</b>
+                                            </span>
+                                    <span class="text-success float-right pr-2">
+                                                £{{ $post->price }}
+                                            </span>
+                                </div>
+                            </a>
+                        @endif
                     </div>
 
                 @endif

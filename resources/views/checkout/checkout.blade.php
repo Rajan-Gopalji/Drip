@@ -7,12 +7,10 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     {{--    <script src="https://www.paypal.com/sdk/js?client-id=Aavww4kFYbaI3XUK2WvHvbb8kSqaL9ifMnBCwseTSOGlm_m8xVcxeBCiIk-QRxPB-jGkWQbhCWG84uu3"></script>--}}
     <!-- Include the PayPal JavaScript SDK -->
-    <script src="https://www.paypal.com/sdk/js?client-id=sb&currency=GBP"></script>
+{{--    <script src="https://www.paypal.com/sdk/js?client-id=sb&currency=GBP"></script>--}}
+    <script src="https://www.paypal.com/sdk/js?client-id=Aavww4kFYbaI3XUK2WvHvbb8kSqaL9ifMnBCwseTSOGlm_m8xVcxeBCiIk-QRxPB-jGkWQbhCWG84uu3&currency=GBP"></script>
 </head>
 
-{{--<script--}}
-{{--    src="https://www.paypal.com/sdk/js?client-id=Aavww4kFYbaI3XUK2WvHvbb8kSqaL9ifMnBCwseTSOGlm_m8xVcxeBCiIk-QRxPB-jGkWQbhCWG84uu3&currency=GBP">--}}
-{{--</script>--}}
 @section('content')
     <body>
     <div class="checkout">
@@ -183,11 +181,11 @@
 {{--                            </div>--}}
 {{--                        </div>--}}
 {{--                            @csrf--}}
-{{--                        <div class="button order_button"><a href="#">Place Order</a></div>--}}
-{{--                            <button type="submit" class="btn btn-success">Buy now</button>--}}
-{{--                        </form>--}}
-                    <!-- Set up a container element for the button -->
-                        <div class="pl-4" id="paypal-button-container"></div>
+                        <div class="pl-5" id="paypal-button-container"></div>
+                        <div class="button order_button" id="paypal-button-container2"><a href="{{ route('checkout.purchased', ['user_id' => Auth::user()->id]) }}">Finalise Payment</a></div>
+                    {{--                            <button type="submit" class="btn btn-success">Buy now</button>--}}
+                    {{--                        </form>--}}
+                        <!-- Set up a container element for the button -->
                     </div>
                 </div>
             </div>
@@ -198,7 +196,7 @@
 
 
 
-{{--<script>paypal.Buttons().render('#paypal-button-container');</script>--}}
+{{--<script>paypal.Buttons().render('#paypal-button-container2');</script>--}}
 <script>
     // Render the PayPal button into #paypal-button-container
 var amount = {{$totalShipping}}
@@ -229,6 +227,56 @@ var amount = {{$totalShipping}}
 
     }).render('#paypal-button-container');
 </script>
+
+{{--<script>--}}
+{{--    var amount = {{$totalShipping}}--}}
+{{--    paypal.Buttons({--}}
+
+{{--        env: 'sandbox', // sandbox | production--}}
+{{--        client: {--}}
+{{--            sandbox:    'Aavww4kFYbaI3XUK2WvHvbb8kSqaL9ifMnBCwseTSOGlm_m8xVcxeBCiIk-QRxPB-jGkWQbhCWG84uu3',--}}
+{{--            production: 'xxxxxxxxxx'--}}
+{{--        },--}}
+
+{{--        // Show the buyer a 'Pay Now' button in the checkout flow--}}
+{{--        commit: true,--}}
+
+{{--        // payment() is called when the button is clicked--}}
+{{--        payment: function(data, actions) {--}}
+{{--            // Make a call to the REST API to set up the payment--}}
+{{--            return actions.payment.create({--}}
+{{--                payment: {--}}
+{{--                    transactions: [--}}
+{{--                        {--}}
+{{--                            amount: { total: '0.01', currency: 'USD' }--}}
+{{--                        }--}}
+{{--                    ],--}}
+{{--                    redirect_urls: {--}}
+{{--                        return_url: 'http://localhost:8000/purchased',--}}
+{{--                        cancel_url: 'http://localhost:8000/'--}}
+{{--                    }--}}
+{{--                }--}}
+{{--            });--}}
+{{--        },--}}
+
+{{--        // onAuthorize() is called when the buyer approves the payment--}}
+{{--        onAuthorize: function(data, actions) {--}}
+
+{{--            // Make a call to the REST API to execute the payment--}}
+{{--            return actions.payment.execute().then(function() {--}}
+{{--                    actions.redirect('return_url');--}}
+{{--                    // location.replace("http://localhost:8000/purchased")--}}
+{{--                }--}}
+{{--            );--}}
+{{--        },--}}
+
+{{--        onCancel: function(data, actions) {--}}
+{{--            actions.redirect('http://localhost:8000/');--}}
+{{--        }--}}
+
+
+{{--    }).render('#paypal-button-container2');--}}
+{{--</script>--}}
 
 
 {{--@section('scripts')--}}

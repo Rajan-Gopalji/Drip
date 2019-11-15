@@ -34,7 +34,7 @@
                 <div>
                     <div class="font-weight-bold pb-4">
                         <a href="/profile/{{ $post->user->id }}">
-                            <span class="text-dark">{{ $post->user->username }}</span>
+                            <span class="text-light">{{ $post->user->username }}</span>
                         </a>
                         {{--                            <a href="#" class="pl-3">Follow</a>--}}
                     </div>
@@ -75,10 +75,14 @@
                 <!-- <div class="button cart_button"><a href="#">Remove from cart</a></div> -->
 {{--                    <input class="button cart_button" type="submit" name="removeCart" value="Remove from cart"/>--}}
                 </div>
-                @if($duplicate == true)
-                    <div class="button cart_button"><a href="/cart/add/{{$post->id}}">Remove from Cart</a></div>
-                @else
-                    <div class="button cart_button"><a href="/cart/add/{{$post->id}}">Add to cart</a></div>
+                @if($post->user->id != Auth::user()->id )
+                    @if($post->sold == 'y')
+                        <div class="button cart_button"><a href="#">Item has been SOLD!</a></div>
+                    @elseif($duplicate == true)
+                        <div class="button cart_button"><a href="/cart/add/{{$post->id}}">Remove from Cart</a></div>
+                    @else
+                        <div class="button cart_button"><a href="/cart/add/{{$post->id}}">Add to cart</a></div>
+                    @endif
                 @endif
                 <!-- Share -->
                 <!-- <div class="details_share">

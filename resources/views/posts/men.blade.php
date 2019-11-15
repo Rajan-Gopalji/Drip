@@ -1,7 +1,11 @@
 @extends('layouts.app')
+<link href="{{ asset('css/sold.css')}}" rel="stylesheet">
 
 @section('content')
     <div class="container">
+        <div>
+            <h1 id="page_title">Men</h1>
+        </div>
         <div class="row pt-5">
             @foreach($posts as $post)
 {{--                {{dd($posts)}}--}}
@@ -16,17 +20,31 @@
                                     </a>
                                 </span>
                             </div>
-                            <a href="/p/{{ $post->id }}">
-                                <img src="/storage/{{ $post->image }}" class="w-100">
-                                    <div class="pt-2">
+
+                            @if($post->sold == 'y')
+                                <img id="greyout" src="/storage/{{$post->image}}" class="w-100">
+                                <img id="sold" src="https://www.sticker.com/picture_library/product_images/real-estate-stickers/74125_sold-small-rectangles-red-and-white-stickers-and-labels.png">
+                                <div class="pt-2">
                                         <span class="text-light pl-2">
                                             <b>{{ $post->caption }}</b>
                                         </span>
-                                        <span class="text-success float-right pr-2">
-                                            £45.00
-                                        </span>
-                                    </div>
-                            </a>
+                                    <span class="text-success float-right pr-2">
+                                    £{{ $post->price }}
+                                </span>
+                                </div>
+                            @else
+                                <a href="/p/{{ $post->id }}">
+                                    <img src="/storage/{{ $post->image }}" class="w-100">
+                                        <div class="pt-2">
+                                            <span class="text-light pl-2">
+                                                <b>{{ $post->caption }}</b>
+                                            </span>
+                                            <span class="text-success float-right pr-2">
+                                                £{{$post->price}}
+                                            </span>
+                                        </div>
+                                </a>
+                            @endif
                         </div>
 
                 @endif

@@ -902,13 +902,13 @@ section
 {
 	font-size: 24px;
 	font-weight: 600;
-	color: #1b1b1b;
+	color: #f2f4f8;
 }
 .section_subtitle
 {
 	font-size: 14px;
 	font-weight: 400;
-	color: #6c6a74;
+	color: #E8E9EA  ;
 	margin-top: 3px;
 }
 .checkout_form_container

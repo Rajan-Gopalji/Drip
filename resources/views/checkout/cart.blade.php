@@ -57,7 +57,7 @@
                             </div>
                         </div>
                         <!-- Price -->
-                        <div class="cart_item_price">£{{$post->price}}</div>
+                        <div class="cart_item_price"><p id="pricey">£{{$post->price}}</p></div>
                         <!-- Quantity -->
                         <div class="cart_item_quantity">
                             <div class="product_quantity_container">
