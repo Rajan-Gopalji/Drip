@@ -12,7 +12,7 @@
                                 <span class="font-weight-bold">
                                     <a href="/profile/{{ $post->user->id }}">
                                         <img src="{{ $post->user->profile->profileImage() }}" class="rounded-circle w-100" style="max-width: 40px;">
-                                        <span class="text-dark">{{ $post->user->username }}</span>
+                                        <span class="text-light">{{ $post->user->username }}</span>
                                     </a>
                                 </span>
                         </div>
@@ -31,10 +31,10 @@
                         @else
                             <a href="/p/{{ $post->id }}">
     {{--                            @foreach($mImage as $image)--}}
-                                    <img src="/storage/{{ public_path($post->image) }}" class="w-100">
+                                    <img src="/storage/{{ $post->image }}" class="w-100">
     {{--                            @endforeach--}}
                                 <div class="pt-2">
-                                            <span class="text-dark pl-2">
+                                            <span class="text-light pl-2">
                                                 <b>{{ $post->caption }}</b>
                                             </span>
                                     <span class="text-success float-right pr-2">

@@ -123,11 +123,8 @@
                 <div class="form-group row">
                     <label for="price" class="col-md-4 col-form-label">Price</label>
 
-                    <input type="text" name="price" class="form-control{{ $errors->has('price') ? ' is-invalid' : '' }}"
-                           id="currency-field" pattern="^\d{1,3}(,\d{3})*(\.\d+)?$"
-                           value="{{ old('price') ?? $post->price}}" data-type="currency" placeholder="£0000.00" maxlength = "4" required><i>Items must be <£10,000</i>
-                    {{--                    <script type="text/javascript" src="{{ asset('js/currency.js') }}" ></script>--}}
-
+                    <input type="tel" name="price" class="form-control{{ $errors->has('price') ? ' is-invalid' : '' }}"
+                           value="{{ old('price') ?? $post->price }}" placeholder="£0000.00" min="0" max="1000" step="0.01" required><i>Items must be <£1,000</i>
 
                     @if ($errors->has('price'))
                         <span class="invalid-feedback" role="alert">

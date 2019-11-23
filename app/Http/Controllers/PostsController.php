@@ -10,6 +10,7 @@ use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Intervention\Image\Facades\Image;
+//use App\Http\Controllers\NumberFormatter;
 use function Sodium\compare;
 
 class PostsController extends Controller
@@ -23,7 +24,7 @@ class PostsController extends Controller
     {
         $users = auth()->user()->following()->pluck('profiles.user_id');
 
-        $posts = Post::whereIn('user_id', $users)->with('user')->latest()->paginate(5);
+        $posts = Post::whereIn('user_id', $users)->with('user')->latest()->paginate(99);
 
         $small = DB::table('posts')->where('size', 'small')->pluck('id');
 
@@ -85,6 +86,9 @@ class PostsController extends Controller
         $image = Image::make(public_path("storage/{$imagePath}"))->fit(1200, 1200);
         $image->save();
 
+        $fmt = numfmt_create( 'en_GB', \NumberFormatter::CURRENCY );
+        $price = numfmt_format_currency($fmt, $data['price'], "GBP")."\n";
+        $price_new = str_replace('£','',$price);
         auth()->user()->posts()->create([
             'caption' => $data['caption'],
             'gender' => $data['gender'],
@@ -93,7 +97,8 @@ class PostsController extends Controller
             'quality' => $data['quality'],
             'description' => $data['description'],
             'colour' => $data['colour'],
-            'price' => $data['price'],
+            'price' => $price_new,
+            'sold' => 'n',
             'image' => $imagePath,
         ]);
 
