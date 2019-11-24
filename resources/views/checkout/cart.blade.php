@@ -153,7 +153,9 @@
                                 </li>
                             </ul>
                         </div>
-                        <div class="button checkout_button"><a href="/{{Auth::user()->id}}/cart/checkout">Proceed to checkout</a></div>
+                        @if($total != 0)
+                            <div class="button checkout_button"><a href="/{{Auth::user()->id}}/cart/checkout">Proceed to checkout</a></div>
+                        @endif
                     </div>
                 </div>
             </div>

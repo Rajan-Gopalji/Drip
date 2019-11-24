@@ -12,11 +12,22 @@
 */
 
 use App\Mail\NewUserWelcomeMail;
+use Illuminate\Support\Facades\Input;
+use App\Post;
+
 
 Auth::routes();
 
 Route::get('/email', function () {
     return new NewUserWelcomeMail();
+});
+
+Route::any('/search',function(){
+    $search = Input::get ( 'search' );
+    $post = Post::where('caption','LIKE','%'.$search.'%')->get();
+    if(count($post) > 0)
+        return view('posts/search')->withDetails($post)->withQuery ($search);
+    else return view ('posts/search')->withQuery ($search);
 });
 
 Route::post('follow/{user}', 'FollowsController@store');

@@ -20,6 +20,7 @@
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link href="{{ asset('css/main_styles.css') }}" rel="stylesheet">
     <link href="{{ asset('css/responsive.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/search.css') }}" rel="stylesheet">
 
 
     <!-- Scripts -->
@@ -76,11 +77,29 @@
                                     </a>
                                 </div>
                                 <div class="search">
+{{--                                    <div class="search_icon">--}}
+{{--                                        <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"--}}
+{{--                                             viewBox="0 0 475.084 475.084" style="enable-background:new 0 0 475.084 475.084;"--}}
+{{--                                             xml:space="preserve">--}}
+{{--                                        </svg>--}}
+{{--                                    </div>--}}
+
+{{--                                    <form action="/search" method="POST" role="search">--}}
+{{--                                        {{ csrf_field() }}--}}
+{{--                                        <div class="input-group">--}}
+{{--                                            <input type="text" class="form-control" name="q" placeholder="Search users">--}}
+{{--                                            <span class="input-group-btn">--}}
+{{--                                                    <button type="submit" class="btn btn-default">--}}
+{{--                                                        <span class="glyphicon glyphicon-search"></span>--}}
+{{--                                                    </button>--}}
+{{--                                                </span>--}}
+{{--                                        </div>--}}
+{{--                                    </form>--}}
                                     <div class="search_icon">
-                                        <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-                                             viewBox="0 0 475.084 475.084" style="enable-background:new 0 0 475.084 475.084;"
-                                             xml:space="preserve">
-                                        </svg>
+                                        <form action="/search" method="POST" role="search">
+                                            @csrf
+                                            <input type="text" placeholder="Search Item" name="search">
+                                        </form>
                                     </div>
                                 </div>
                                 <div class="hamburger"><i class="fa fa-bars" aria-hidden="true"></i></div>
@@ -98,8 +117,9 @@
                 <div class="page_menu_content">
 
                     <div class="page_menu_search menu_mm">
-                        <form action="#">
-                            <input type="search" required="required" class="page_menu_search_input menu_mm" placeholder="Search for products...">
+                        <form action="/search" method="POST" role="search">
+                            @csrf
+                            <input type="text" placeholder="Search Item" name="search">
                         </form>
                     </div>
                     <ul class="page_menu_nav menu_mm">
