@@ -45,7 +45,7 @@
             <div class="col-4 pb-4">
                 @if($post->sold == 'y')
                     <img id="greyout" src="/storage/{{$post->image}}" class="w-100">
-                    <img id="soldprofile" src="https://www.sticker.com/picture_library/product_images/real-estate-stickers/74125_sold-small-rectangles-red-and-white-stickers-and-labels.png">
+{{--                    <img id="soldprofile" src="https://www.sticker.com/picture_library/product_images/real-estate-stickers/74125_sold-small-rectangles-red-and-white-stickers-and-labels.png">--}}
                     <div class="pt-2">
                                         <span class="text-light pl-2">
                                             <b>{{ $post->caption }}</b>

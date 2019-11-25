@@ -82,8 +82,10 @@
                         <div class="button cart_button"><a href="/cart/add/{{$post->id}}">Remove from Cart</a></div>
                     @else
                         <div class="button cart_button"><a href="/cart/add/{{$post->id}}">Add to cart</a></div>
+                        <div class="button cart_button"><a href="{{$post->id}}/trade">Trade</a></div>
                     @endif
                 @endif
+
                 <!-- Share -->
                 <!-- <div class="details_share">
                     <span>Share:</span>

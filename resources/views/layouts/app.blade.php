@@ -21,6 +21,7 @@
     <link href="{{ asset('css/main_styles.css') }}" rel="stylesheet">
     <link href="{{ asset('css/responsive.css') }}" rel="stylesheet">
     <link href="{{ asset('css/search.css') }}" rel="stylesheet">
+    <link href="{{ asset('plugins/bootstrap-image-checkbox/dist/css/bootstrap-image-checkbox.css.css') }}" rel="stylesheet">
 
 
     <!-- Scripts -->

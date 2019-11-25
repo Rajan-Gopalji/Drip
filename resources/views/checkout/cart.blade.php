@@ -3,6 +3,8 @@
 <head>
     {{--        <link href="{{ asset('css/main_styles.css') }}" rel="stylesheet">--}}
     <link href="{{ asset('css/cart.css')}}" rel="stylesheet">
+    <link href="{{ asset('css/sold.css')}}" rel="stylesheet">
+
     {{--        <link rel="stylesheet" type="text/css" href="{{ asset('css/cart_responsive.css')}}styles/cart_responsive.css">--}}
 {{--    <script>--}}
 {{--        function myFunction() {--}}
@@ -43,6 +45,12 @@
                     <div class="cart_item d-flex flex-lg-row flex-column align-items-lg-center align-items-start justify-content-start">
                         <!-- Name -->
                         <div class="cart_item_product d-flex flex-row align-items-center justify-content-start">
+                            @if($post->sold == 'y')
+                                <div class="cart_item_image">
+                                    <div><img id="greyout" src="/storage/{{$post->image}}" alt="#"></div>
+                                    <img id="soldprofile" src="https://www.sticker.com/picture_library/product_images/real-estate-stickers/74125_sold-small-rectangles-red-and-white-stickers-and-labels.png">
+                                </div>
+                            @else
                             <a href="/p/{{$post->id}}">
                                 <div class="cart_item_image">
                                     <div><img src="/storage/{{$post->image}}" alt="#"></div>
@@ -55,6 +63,7 @@
                                 <div class="cart_item_name"><a href="/p/{{$post->id}}">{{$post->caption}}</a></div>
                                 <div class="cart_item_edit"><a href="#">Edit Product</a></div>
                             </div>
+                                @endif
                         </div>
                         <!-- Price -->
                         <div class="cart_item_price"><p id="pricey">£{{$post->price}}</p></div>
@@ -153,8 +162,12 @@
                                 </li>
                             </ul>
                         </div>
-                        @if($total != 0)
+{{--                        @if($post->sold = 'y')--}}
+{{--                            <h3 class="float-right">Remove sold items from cart</h3>--}}
+                        @if($total != 0 and $post->sold == 'n')
                             <div class="button checkout_button"><a href="/{{Auth::user()->id}}/cart/checkout">Proceed to checkout</a></div>
+                        @elseif($total > 0 and $post->sold == 'y')
+                            <h3 class="float-right">Remove sold items from cart</h3>
                         @endif
                     </div>
                 </div>

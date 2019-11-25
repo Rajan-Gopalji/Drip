@@ -21,12 +21,19 @@ class CartController extends Controller
         $total = 0;
         foreach ($posts as $postPrice){
             $total = $total + $postPrice->price;
+//            if($postPrice->sold == 'y')
+//            {
+//                Cart::destroy($postPrice);
+////                dd($postPrice);
+//            }
         }
 
         $totalShipping = $total;
         if ($total < 100){
             $totalShipping = $totalShipping + 4.99;
         }
+
+
 //        dd($total);
 //        $cart_user_id = DB::table('carts')->pluck('user_id');
 //        $cart_post_id = DB::table('carts')->pluck('post_id');

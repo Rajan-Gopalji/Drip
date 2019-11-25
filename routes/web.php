@@ -54,6 +54,8 @@ Route::get('/{user}/cart/checkout', 'CheckoutController@index')->name('checkout.
 //Route::post('/checkout', 'CheckoutController@postCheckout')->name('checkout.postCheckout');
 Route::get('{user}/purchased', 'CheckoutController@purchased')->name('checkout.purchased');
 
+Route::get('/p/{post}/trade', 'TradeController@index')->name('trade.index');
+
 
 
 Route::get('/profile/{user}', 'ProfilesController@index')->name('profile.show');
