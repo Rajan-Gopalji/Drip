@@ -51,6 +51,7 @@
     {{--                <button type="submit" class="btn btn-primary">Ini Trade</button>--}}
                     <div class="row pt-3">
                         <div class="button"><a href="#">Pending</a></div>
+                        <div class="button"><a href="#">Cancel Trade</a></div>
                     </div>
             </div>
         @endif

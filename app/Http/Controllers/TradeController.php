@@ -16,11 +16,10 @@ class TradeController extends Controller
         $user_id = auth()->user()->id;
         $item = DB::select(DB::raw('SELECT * FROM posts WHERE user_id = :user_id'), array('user_id' => $user_id));
 
-
         $postId = $post->id;
         $itemTrade = DB::select(DB::raw('SELECT * FROM posts WHERE id = :post_id'), array('post_id' => $postId));
 //        dd($itemTrade);
-        return view('checkout.trade', compact('user', 'item', 'itemTrade'));
+        return view('checkout.trade', compact('user', 'item', 'itemTrade', 'postId'));
     }
 
     public function myTradeIndex()
@@ -72,34 +71,21 @@ class TradeController extends Controller
         return view('profiles.myTrade', compact('user', 'posts', 'itemTrade', 'itemTradee2', 'otherEndPostFull', 'otherEndPostFulltheywant', 'otherEndPostFulltheyllgive', 'countIncoming', 'countOutgoing'));
     }
 
-    public function store(Request $request)
+    public function store(Request $request, Post $post)
     {
 
-//        var_dump(request('post_id_trader'));
-//        var_dump(request('post_id_tradee'));
-//        var_dump(request('user_id_trader'));
-//        var_dump(request('user_id_tradee'));
-
-
-        $data = request()->validate([
-            'post_id_trader' => 'required'
-        ]);
-
+        $post_id_tradee = $post->id;
+        $user_id_tradee = $post->user_id;
         $user_id_trader = auth()->user()->id;
 
         $data = request()->validate([
-//        Trade::create([
-            'user_id_tradee' => 'required',
-            'user_id' => 'required',
-            'post_id_tradee' => 'required',
             'post_id_trader' => 'required',
-            'accepts' => 'n'
         ]);
 
         auth()->user()->trade()->create([
-            'user_id_tradee' => $data['user_id_tradee'],
-            'user_id' => $data['user_id'],
-            'post_id_tradee' => $data['post_id_tradee'],
+            'user_id_tradee' => $user_id_tradee,
+            'user_id' => $user_id_trader,
+            'post_id_tradee' => $post_id_tradee,
             'post_id_trader' => $data['post_id_trader'],
             'accepts' => 'p',
         ]);
