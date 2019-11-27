@@ -82,9 +82,78 @@
                                 </li>
                             </ul>
                         </div>
+                        <div class="button checkout_button"><a href="/p/{{$postTrade->id}}/trade/{{Auth::user()->id}}/myTrades">Make Trade</a></div>
                     </div>
 
         </div>
+
+        <form action="/p/{{$postTrade->id}}/trade" enctype="multipart/form-data" method="post">
+            @csrf
+            <div class="form-group row">
+                <label for="post_id_trader" class="col-md-4 col-form-label">Item you'll trade</label>
+                @foreach($item as $postTrader)
+                <div class="radio-toolbar">
+                    <input type="radio" id="radioPostid" name="post_id_trader" value="{{$postTrader->id}}">
+                    <label for="{{$postTrader->id}}">{{$postTrader->caption}}</label>
+                </div>
+                @endforeach
+
+                @if ($errors->has('post_id_trader'))
+                    <span class="invalid-feedback" role="alert">
+                            <strong>{{ $errors->first('post_id_trader') }}</strong>
+                        </span>
+                @endif
+            </div>
+
+                <div class="form-group row">
+                    <label for="gender" class="col-md-4 col-form-label">Item you want</label>
+
+                    <div class="radio-toolbar">
+                        <input type="radio" id="radioPosteeid" name="post_id_tradee" value="{{$postTrade->id}}" checked>
+                        <label for="{{$postTrade->id}}">{{$postTrade->caption}}</label>
+                    </div>
+
+                    @if ($errors->has('gender'))
+                        <span class="invalid-feedback" role="alert">
+                            <strong>{{ $errors->first('gender') }}</strong>
+                        </span>
+                    @endif
+                </div>
+
+            <div class="form-group row">
+                <label for="gender" class="col-md-4 col-form-label">Tradee</label>
+
+                <div class="radio-toolbar">
+                    <input type="radio" id="user_id_tradee" name="user_id_tradee" value="{{$postTrade->user_id}}" checked>
+{{--                    <label for="{{$postTrade->user_id}}"></label>--}}
+                </div>
+
+                @if ($errors->has('gender'))
+                    <span class="invalid-feedback" role="alert">
+                            <strong>{{ $errors->first('gender') }}</strong>
+                        </span>
+                @endif
+            </div>
+
+            <div class="form-group row">
+                <label for="gender" class="col-md-4 col-form-label">Trader</label>
+
+                <div class="radio-toolbar">
+                    <input type="radio" id="user_id" name="user_id" value="{{$post->user_id}}" checked>
+{{--                                        <label for="{{$post->user_id}}"></label>--}}
+                </div>
+
+                @if ($errors->has('gender'))
+                    <span class="invalid-feedback" role="alert">
+                            <strong>{{ $errors->first('gender') }}</strong>
+                        </span>
+                @endif
+            </div>
+
+                <div class="row pt-4">
+                    <button type="submit" class="btn btn-primary">Ini Trade</button>
+                </div>
+        </form>
     </div>
 @endsection
 

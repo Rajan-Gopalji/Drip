@@ -55,6 +55,10 @@ Route::get('/{user}/cart/checkout', 'CheckoutController@index')->name('checkout.
 Route::get('{user}/purchased', 'CheckoutController@purchased')->name('checkout.purchased');
 
 Route::get('/p/{post}/trade', 'TradeController@index')->name('trade.index');
+Route::get('/{user}/myTrades', 'TradeController@myTradeIndex')->name('trade.myTradeIndex');
+
+Route::post('/p/{post}/trade', 'TradeController@store')->name('trade.store');
+//Route::patch('/p/{post}/trade', 'TradeController@updateTrade')->name('trade.updateTrade');
 
 
 
