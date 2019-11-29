@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\DB;
 
+
 class TradeController extends Controller
 {
     public function index(User $user, Post $post)
@@ -37,14 +38,22 @@ class TradeController extends Controller
 //        $itemTradee2 =  DB::select(DB::raw('SELECT * FROM posts WHERE id = :itemTrade'), array('itemTrade' => $itemTradee));
         $itemTradee2 = Post::whereIn('id', $itemTradee)->paginate(5);
 
+
+        $tradeStatusYourOffer = DB::select(DB::raw('SELECT * FROM trades WHERE user_id = :user_id'), array('user_id' => $user_id));
+        foreach ($tradeStatusYourOffer as $yourOffer)
+        {
+
+        }
+        $tradeStatusOffer = DB::select(DB::raw('SELECT * FROM trades WHERE user_id_tradee = :user_id'), array('user_id' => $user_id));
+        foreach ($tradeStatusOffer as $offer)
+        {
+
+        }
 //        $otherEndTrader = DB::select(DB::raw('SELECT post_id_trader FROM trades WHERE user_id_tradee = :user_id'), array('user_id' => $user_id));
 
-
         $otherEndPost = Trade::whereIn('user_id_tradee', [$user_id])->paginate(5);
-//        dd($otherEndPost);
 
         $countIncoming = \App\Trade::where('user_id_tradee', $user_id)->count();
-//        dd($count);
         foreach ($otherEndPost as $traders_post)
         {
             $theywantid = $traders_post->post_id_trader;
@@ -59,16 +68,11 @@ class TradeController extends Controller
 //            dd($otherEndPostFull);
         }
 
-//
-//        foreach ($otherEndTrader as $post_trader)
-//        {
-//            $otherEndPost = DB::select(DB::raw('SELECT * FROM posts WHERE id = :post_id_trader'), array('post_id_trader' => $post_trader->post_id_trader));
-//        }
 //        $otherEndPost = Post::whereIn('id', $otherEndTrader)->paginate(5);
 //        $otherEndPost = DB::select(DB::raw('SELECT * FROM posts WHERE id = :post_id_trader'), array('post_id_trader' => $otherEndTrader));
 
 
-        return view('profiles.myTrade', compact('user', 'posts', 'itemTrade', 'itemTradee2', 'otherEndPostFull', 'otherEndPostFulltheywant', 'otherEndPostFulltheyllgive', 'countIncoming', 'countOutgoing'));
+        return view('profiles.myTrade', compact('user', 'posts', 'itemTrade', 'itemTradee2', 'yourOffer', 'offer', 'otherEndPostStatus', 'otherEndPostFull', 'otherEndPostFulltheywant', 'otherEndPostFulltheyllgive', 'countIncoming', 'countOutgoing'));
     }
 
     public function store(Request $request, Post $post)
@@ -93,9 +97,37 @@ class TradeController extends Controller
         return redirect(auth()->user()->id . '/myTrades');
     }
 
-    public function updateTrade()
+    public function acceptTrade($post_id_trader, $post_id_tradee)
     {
+        $status = 'y';
+        DB::select(DB::raw('UPDATE trades SET accepts = :status WHERE  post_id_trader = :post_id_trader'), array('post_id_trader' => $post_id_trader, 'status' => $status));
+        DB::table('posts')
+            ->whereIn('id', [$post_id_trader, $post_id_tradee])
+            ->update(['sold' => $status]);
 
+        return back()->with('success', 'Trade Accepted');
+    }
+
+    public function declineTrade($post_id)
+    {
+        $decline = 'n';
+        DB::select(DB::raw('UPDATE trades SET accepts = :decline WHERE  post_id_trader = :post_id_trader'), array('post_id_trader' => $post_id, 'decline' => $decline));
+
+        return back()->with('success', 'Trade Declined');
+    }
+
+    public function renegotiate(Post $post)
+    {
+        $this->cancel($post->id);
+
+        return redirect()->route('trade.index', ['post' => $post->id]);
+    }
+
+    public function cancel($post_id)
+    {
+        Trade::where('post_id_tradee', $post_id)->delete();
+
+        return back()->with('success', 'Trade Cancelled');
     }
 
 }

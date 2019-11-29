@@ -11,8 +11,8 @@
 
         @else
             <div class="row pt-5">
+                <h2>You give:</h2>
                 @foreach($posts as $post)
-                    <h2>You'll give:</h2>
                     <div class="col-lg-4 col-md-6 col-sm-12">
                         <a href="/p/{{ $post->id }}">
                             {{--                            @foreach ($imageSelect as $mimage)--}}
@@ -31,7 +31,7 @@
                 @endforeach
 
                 @foreach($itemTradee2 as $postee)
-                        <h2>You'll Want:</h2>
+                        <h2>You Want:</h2>
                         <div class="col-lg-4 col-md-6 col-sm-12">
                         <a href="/p/{{ $postee->id }}">
                             {{--                            @foreach ($imageSelect as $mimage)--}}
@@ -50,57 +50,80 @@
                 @endforeach
     {{--                <button type="submit" class="btn btn-primary">Ini Trade</button>--}}
                     <div class="row pt-3">
+                        @if($yourOffer->accepts == 'n')
+                            <div class="button"><a href="{{ route('trade.renegotiate', ['post' => $postee]) }}">Renegotiate</a></div>
+                            <div class="button"><a href="{{ route('trade.cancel', ['post_id' => $postee->id]) }}">Cancel Trade</a></div>
+                        @elseif($yourOffer->accepts == 'y')
+                            <div class="button"><a href="#">Accepted</a></div>
+                        @else
                         <div class="button"><a href="#">Pending</a></div>
-                        <div class="button"><a href="#">Cancel Trade</a></div>
+                        @endif
+{{--                        <div class="button"><a href="{{ route('trade.cancel', ['post_id' => $postee->id]) }}">Cancel Trade</a></div>--}}
                     </div>
             </div>
         @endif
-<br>
-        @if($countIncoming == 0)
-{{--            No incoming trades--}}
+        <br>
+        <br>
+        @if($countIncoming == 0 or $offer->accepts == 'n')
+            {{--            No incoming trades--}}
         @else
-            <div class="row pt-3">
-                @foreach($otherEndPostFulltheyllgive as $otherEndPost)
-                    <h2>They give:</h2>
-                    <div class="col-lg-4 col-md-6 col-sm-12">
-                        <a href="/p/{{ $otherEndPost->id }}">
-                            {{--                            @foreach ($imageSelect as $mimage)--}}
-                            <img src="/storage/{{$otherEndPost->image}}" class="w-100">
-                            {{--                            @endforeach--}}
-                            <div class="pt-2">
-                                                <span class="text-light pl-2">
-                                                    <b>{{ $otherEndPost->caption }}</b>
-                                                </span>
-                                <span class="text-success float-right pr-2">
-                                            £{{ $otherEndPost->price }}
-                                        </span>
-                            </div>
-                        </a>
-                    </div>
+            <h2>Trade Requests:</h2>
+            <div class="row pt-4">
+                @foreach($otherEndPostFulltheyllgive as $otherEndPostTradee)
+{{--                    @if($offer->accepts == 'n')--}}
+
+{{--                    @else--}}
+                        <h2>You give:</h2>
+                        <div class="col-lg-4 col-md-6 col-sm-12">
+                            <a href="/p/{{ $otherEndPostTradee->id }}">
+                                {{--                            @foreach ($imageSelect as $mimage)--}}
+                                <img src="/storage/{{$otherEndPostTradee->image}}" class="w-100">
+                                {{--                            @endforeach--}}
+                                <div class="pt-2">
+                                                    <span class="text-light pl-2">
+                                                        <b>{{ $otherEndPostTradee->caption }}</b>
+                                                    </span>
+                                    <span class="text-success float-right pr-2">
+                                                £{{ $otherEndPostTradee->price }}
+                                            </span>
+                                </div>
+                            </a>
+                        </div>
+{{--                    @endif--}}
                 @endforeach
 
-                @foreach($otherEndPostFulltheywant as $otherEndPost)
-                    <h2>They want:</h2>
-                    <div class="col-lg-4 col-md-6 col-sm-12">
-                        <a href="/p/{{ $otherEndPost->id }}">
-                            {{--                            @foreach ($imageSelect as $mimage)--}}
-                            <img src="/storage/{{$otherEndPost->image}}" class="w-100">
-                            {{--                            @endforeach--}}
-                            <div class="pt-2">
-                                                <span class="text-light pl-2">
-                                                    <b>{{ $otherEndPost->caption }}</b>
+
+{{--                        @if($offer->accepts == 'n')--}}
+
+{{--                        @else--}}
+                        @foreach($otherEndPostFulltheywant as $otherEndPost)
+                            <h2>They want:</h2>
+                            <div class="col-lg-4 col-md-6 col-sm-12">
+                                <a href="/p/{{ $otherEndPost->id }}">
+                                    {{--                            @foreach ($imageSelect as $mimage)--}}
+                                    <img src="/storage/{{$otherEndPost->image}}" class="w-100">
+                                    {{--                            @endforeach--}}
+                                    <div class="pt-2">
+                                                        <span class="text-light pl-2">
+                                                            <b>{{ $otherEndPost->caption }}</b>
+                                                        </span>
+                                        <span class="text-success float-right pr-2">
+                                                    £{{ $otherEndPost->price }}
                                                 </span>
-                                <span class="text-success float-right pr-2">
-                                            £{{ $otherEndPost->price }}
-                                        </span>
+                                    </div>
+                                </a>
                             </div>
-                        </a>
-                    </div>
-                @endforeach
-                    <div class="row pt-3">
-                        <div class="button"><a href="#">Accept</a></div>
-                        <div class="button"><a href="#">Decline</a></div>
-                    </div>
+                        @endforeach
+                        <div class="row pt-3">
+                            @if($offer->accepts == 'y')
+                                <div class="button"><a href="#">Accepted</a></div>
+                            @else
+                                <div class="button"><a href="{{ route('trade.accept', ['post_id_trader' => $otherEndPost->id, 'post_id_tradee' => $otherEndPostTradee->id]) }}">Accept</a></div>
+                                <div class="button"><a href="{{ route('trade.decline', ['post_id' => $otherEndPost->id]) }}">Decline</a></div>
+                            @endif
+                        </div>
+{{--                        @endif--}}
+
             </div>
         @endif
     </div>

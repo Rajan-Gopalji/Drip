@@ -51,7 +51,7 @@
                                     <li class="hassubs">
                                         <a href="/profile/{{Auth::user()->id}}">{{ Auth::user()->username }}</a>
                                         <ul>
-                                            <li><a href="/{{Auth::user()->id}}/myTrades">Trade<span>({{\App\Trade::where('user_id_tradee', Auth::user()->id)->count()}})</span></a></li>
+                                            <li><a href="/{{Auth::user()->id}}/myTrades">Trade</a></li>
                                             <br>
                                             <li><a href="{{ route('logout') }}" onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">{{ __('Logout') }}</a></li>

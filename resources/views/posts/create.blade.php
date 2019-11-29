@@ -67,7 +67,7 @@
                     </div>
                     <p>&nbsp;</p>
 
-                @if ($errors->has('gender'))
+                    @if ($errors->has('gender'))
                         <span class="invalid-feedback" role="alert">
                             <strong>{{ $errors->first('gender') }}</strong>
                         </span>
