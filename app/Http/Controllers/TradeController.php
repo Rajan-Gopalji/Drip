@@ -19,60 +19,93 @@ class TradeController extends Controller
 
         $postId = $post->id;
         $itemTrade = DB::select(DB::raw('SELECT * FROM posts WHERE id = :post_id'), array('post_id' => $postId));
-//        dd($itemTrade);
         return view('checkout.trade', compact('user', 'item', 'itemTrade', 'postId'));
+    }
+
+    public function myTradeIndexPosts(Request $request)
+    {
+        $user_id = auth()->user()->id;
+
+
+        $ItemYouWantId=$request->route('post');
+        $itemYouWant = DB::select(DB::raw('SELECT * FROM posts WHERE id = :item_id'), array('item_id' => $ItemYouWantId));
+
+
+        $youGiveItemId =  \App\Trade::where([
+            ['post_id_tradee', $ItemYouWantId],
+            ['user_id', $user_id]
+            ])->pluck('post_id_trader');
+        $youGiveItem = Post::whereIn('id', $youGiveItemId)->paginate(20);
+//        $numOffers = $theyGiveItem->count();
+
+        $offers =  \App\Trade::where('post_id_tradee', $ItemYouWantId)->pluck('accepts');
+        foreach ($offers as $offer)
+        {
+
+        }
+
+//        $countIncoming = \App\Trade::where('user_id_tradee', $user_id)->count();
+
+        return view('profiles.myTradePosts', compact('itemYouWant', 'youGiveItem', 'offer'));
     }
 
     public function myTradeIndex()
     {
-        //Select user_id_tradee where auth user in trade table and pull post from post via post.id and trade.post_id_tradee and trade.post_id_trader
         $user_id = auth()->user()->id;
-        //$offer = SELECT * FROM trade WHERE user_id_tradee = $user_id_tradee
 
-        $itemTrade = auth()->user()->trade()->pluck('trades.post_id_trader');
-        $countOutgoing = \App\Trade::where('user_id', $user_id)->count();
-        $posts = Post::whereIn('id', $itemTrade)->paginate(5);
+        $theyWillGive = auth()->user()->trade()->pluck('trades.post_id_tradee');
+        $theyWillGiveItem = Post::whereIn('id', $theyWillGive)->paginate(20);
 
-//        $itemTradee =  DB::select(DB::raw('SELECT post_id_tradee FROM trades WHERE post_id_trader = :itemTrade'), array('itemTrade' => $itemTrade));
-        $itemTradee = auth()->user()->trade()->pluck('trades.post_id_tradee');
-//        $itemTradee2 =  DB::select(DB::raw('SELECT * FROM posts WHERE id = :itemTrade'), array('itemTrade' => $itemTradee));
-        $itemTradee2 = Post::whereIn('id', $itemTradee)->paginate(5);
-
-
-        $tradeStatusYourOffer = DB::select(DB::raw('SELECT * FROM trades WHERE user_id = :user_id'), array('user_id' => $user_id));
-        foreach ($tradeStatusYourOffer as $yourOffer)
-        {
-
-        }
         $tradeStatusOffer = DB::select(DB::raw('SELECT * FROM trades WHERE user_id_tradee = :user_id'), array('user_id' => $user_id));
         foreach ($tradeStatusOffer as $offer)
         {
 
         }
-//        $otherEndTrader = DB::select(DB::raw('SELECT post_id_trader FROM trades WHERE user_id_tradee = :user_id'), array('user_id' => $user_id));
+        $countOutgoing = \App\Trade::where('user_id', $user_id)->count();
 
-        $otherEndPost = Trade::whereIn('user_id_tradee', [$user_id])->paginate(5);
+        return view('profiles.myTrade', compact('theyWillGiveItem', 'offer', 'countOutgoing'));
+    }
 
-        $countIncoming = \App\Trade::where('user_id_tradee', $user_id)->count();
-        foreach ($otherEndPost as $traders_post)
+    public function ItemRequests(Request $request)
+    {
+        $user_id = auth()->user()->id;
+
+        $yourItemId=$request->route('post');
+        $yourItem = DB::select(DB::raw('SELECT * FROM posts WHERE id = :item_id'), array('item_id' => $yourItemId));
+
+        $theyGiveItemId =  \App\Trade::where('post_id_tradee', $yourItemId)->pluck('post_id_trader');
+        $theyGiveItem = Post::whereIn('id', $theyGiveItemId)->paginate(20);
+        $numOffers = $theyGiveItem->count();
+
+        $offers =  \App\Trade::where('post_id_tradee', $yourItemId)->pluck('accepts');
+        foreach ($offers as $offer)
         {
-            $theywantid = $traders_post->post_id_trader;
-            $otherEndPostFulltheywant = Post::whereIn('id', [$theywantid])->paginate(5);
 
-            $theyllgive = $traders_post->post_id_tradee;
-            $otherEndPostFulltheyllgive = Post::whereIn('id', [$theyllgive])->paginate(5);
-//            dd($otherEndPostFulltheyllgive);
-
-//            dd($theyllgive);
-//            $otherEndPostFull = Post::whereIn('id', [$id])->paginate(5);
-//            dd($otherEndPostFull);
         }
 
-//        $otherEndPost = Post::whereIn('id', $otherEndTrader)->paginate(5);
-//        $otherEndPost = DB::select(DB::raw('SELECT * FROM posts WHERE id = :post_id_trader'), array('post_id_trader' => $otherEndTrader));
+        $countIncoming = \App\Trade::where('user_id_tradee', $user_id)->count();
 
+        return view('profiles.tradeRequestPost', compact('yourItem', 'theyGiveItem', 'offers', 'numOffers', 'countIncoming'));
+    }
 
-        return view('profiles.myTrade', compact('user', 'posts', 'itemTrade', 'itemTradee2', 'yourOffer', 'offer', 'otherEndPostStatus', 'otherEndPostFull', 'otherEndPostFulltheywant', 'otherEndPostFulltheyllgive', 'countIncoming', 'countOutgoing'));
+    public function requests()
+    {
+
+        $user_id = auth()->user()->id;
+
+        $theyWantItemId =  \App\Trade::where('user_id_tradee', $user_id)->pluck('post_id_tradee');
+        $theyWantItem = Post::whereIn('id', $theyWantItemId)->paginate(20);
+
+        $tradeStatusOffer = DB::select(DB::raw('SELECT * FROM trades WHERE user_id_tradee = :user_id'), array('user_id' => $user_id));
+        foreach ($tradeStatusOffer as $offer)
+        {
+
+        }
+
+        $countIncoming = \App\Trade::where('user_id_tradee', $user_id)->count();
+
+        return view('profiles.tradeRequests', compact('theyWantItem', 'offer', 'countIncoming'));
+
     }
 
     public function store(Request $request, Post $post)
@@ -127,7 +160,7 @@ class TradeController extends Controller
     {
         Trade::where('post_id_tradee', $post_id)->delete();
 
-        return back()->with('success', 'Trade Cancelled');
+        return redirect()->route('trade.myTradeIndex', auth()->user()->id);
     }
 
 }

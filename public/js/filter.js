@@ -19,8 +19,8 @@
 
 
 function w3_open() {
-    document.getElementById("main").style.marginLeft = "25%";
-    document.getElementById("mySidebar").style.width = "25%";
+    document.getElementById("main").style.marginLeft = "20%";
+    document.getElementById("mySidebar").style.width = "20%";
     document.getElementById("mySidebar").style.display = "block";
     document.getElementById("openNav").style.display = 'none';
 }
@@ -38,6 +38,14 @@ function w3_close() {
             if(items[i].type=='checkbox' && items[i].checked==true)
                 selectedItems+=items[i].value+"\n";
         }
+
+        // $.post("/",
+        //     {
+        //         value : selectedItems
+        //     },
+        //     function(data, status){
+        //         alert('value stored');
+        //     });
         alert(selectedItems);
     }
     // </script>

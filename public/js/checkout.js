@@ -1,3 +1,5 @@
+//NOT IN USE
+
 var stripe = Stripe('pk_test_wGrLEcwZqCgqUd5zyE5ExvWS00pUiQjNCx');
 
 var $form = $('#checkout-form');

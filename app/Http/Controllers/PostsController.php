@@ -23,44 +23,15 @@ class PostsController extends Controller
     public function index()
     {
         $users = auth()->user()->following()->pluck('profiles.user_id');
-
         $posts = Post::whereIn('user_id', $users)->with('user')->latest()->paginate(99);
-
-        $small = DB::table('posts')->where('size', 'small')->pluck('id');
-
-//        dd($small);
-
         $postId = auth()->user()->posts()->pluck('posts.id');
-
-//        dd($postId);
-
-//        $mImage = DB::table('multi_image')->where('post_id', $postId)->pluck('multi_image.post_id');
-//        $mImage = Multi_image::whereIn('post_id', $postId)->with('post')->paginate(999);
         $mImage = Multi_image::all();
-//        $mImage = DB::select('SELECT image FROM multi_image');
 
+//        $small = DB::table('posts')->where('size', 'small');
+        //if selected then execute query
+//        $small = DB::select( DB::raw("SELECT * FROM posts WHERE size = 'small'"));
 
-//        $imageSelect = DB::select('SELECT image FROM multi_image WHERE post_id = 4 LIMIT 1');
-
-//        $posst = 4;
-//        $imageSelect = DB::table('multi_image')
-//            ->where('post_id', $posst)->first();
-
-
-
-//        dd($imageSelect->image);
-
-//        foreach ($imageSelect as $mimage){
-//            dd($mimage->image);
-//        }
-
-//        dd($mImage[2]->post_id);
-//        foreach ($mImage as $mimage){
-//        dd($mimage->image);
-//        }
-//        $mImage = Post::with('multi_image')->get();
-
-        return view('posts.index', compact('posts','mImage', 'imageSelect'));
+        return view('posts.index', compact('posts','mImage', 'imageSelect', 'small'));
     }
 
     public function create()
@@ -125,20 +96,13 @@ class PostsController extends Controller
                 $multi_image->save();
             }
 
-//            return redirect()->back()->with('msg', 'all done');
         }
         return redirect('/profile/' . auth()->user()->id);
     }
 
     public function destroy(User $user, $id)
-//    public function destroy(User $user, Post $post)
     {
-//        $post = Post::where('id', $id);
-//        $post->delete();
-//        return redirect(back());
         Post::destroy($id);
-//        dd($post);
-//        return redirect("/profile/{$user->id}/manage")->with('success', 'Post Updated');
         return back()->with('success', 'Post Updated');
     }
 
@@ -153,9 +117,6 @@ class PostsController extends Controller
 
     public function update(Request $request, User $user, Post $post)
     {
-//        $this->authorize('update', $user->profile);
-//        $post = Post::findOrFail($id);
-//        dd($post);
         $data = request()->validate([
             'caption' => 'required',
             'gender' => 'required',
@@ -168,9 +129,7 @@ class PostsController extends Controller
             'image' => '',
         ]);
 
-//        $last_id = DB::getPDO()->lastInsertId();
         $last_id = $post->id;
-//        dd($last_id);
         if($request->hasFile('images'))
         {
             $image_array = $request->file('images');
@@ -182,7 +141,6 @@ class PostsController extends Controller
 
                 $new_image_name = rand().".".$image_ext;
                 $destination_path = public_path('storage/uploads');
-//                $destination_path = request('image')->store('uploads', 'public');
 
                 $image_array[$i]->move($destination_path, $new_image_name);
 
@@ -192,7 +150,6 @@ class PostsController extends Controller
                 $multi_image->save();
             }
 
-//            return redirect()->back()->with('msg', 'all done');
         }
 
         if (request('image')) {
@@ -215,13 +172,8 @@ class PostsController extends Controller
     public function show(\App\Post $post)
     {
         $postId = $post->id;
-//        dd($postId);
-//        $mImage = auth()->user()->posts()->pluck('multi_image.post_id');
         $mImage = DB::table('multi_image')->where('post_id', $postId)->pluck('image');
-//        dd($mImage);
         $postsIm = Post::whereIn('id', $mImage)->paginate(5);
-//        dd($postsIm);
-//        $mImage = Post::with('multi_image')->get();
         $user_id = auth()->user()->id;
         $duplicate = Cart::where(['user_id' => $user_id, 'post_id' => $postId])->exists();
         return view('posts.show', compact('post', 'mImage', 'duplicate'));

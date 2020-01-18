@@ -73,32 +73,11 @@
                             <div class="header_extra ml-auto">
                                 <div class="shopping_cart">
                                     <a href="/profile/{{Auth::user()->id}}/cart">
-                                        <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-                                             viewBox="0 0 489 489" style="enable-background:new 0 0 489 489;" xml:space="preserve">
-                                        </svg>
                                         <div>Cart <span>({{\App\Cart::where('user_id', Auth::user()->id)->count()}})</span></div>
                                     </a>
                                 </div>
-                                <div class="search">
-{{--                                    <div class="search_icon">--}}
-{{--                                        <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"--}}
-{{--                                             viewBox="0 0 475.084 475.084" style="enable-background:new 0 0 475.084 475.084;"--}}
-{{--                                             xml:space="preserve">--}}
-{{--                                        </svg>--}}
-{{--                                    </div>--}}
-
-{{--                                    <form action="/search" method="POST" role="search">--}}
-{{--                                        {{ csrf_field() }}--}}
-{{--                                        <div class="input-group">--}}
-{{--                                            <input type="text" class="form-control" name="q" placeholder="Search users">--}}
-{{--                                            <span class="input-group-btn">--}}
-{{--                                                    <button type="submit" class="btn btn-default">--}}
-{{--                                                        <span class="glyphicon glyphicon-search"></span>--}}
-{{--                                                    </button>--}}
-{{--                                                </span>--}}
-{{--                                        </div>--}}
-{{--                                    </form>--}}
-                                    <div class="search_icon">
+                                <div class="search pr-5">
+                                    <div class="search_box">
                                         <form action="/search" method="POST" role="search">
                                             @csrf
                                             <input type="text" placeholder="Search Item" name="search">
@@ -118,8 +97,12 @@
         <div class="menu menu_mm trans_300">
             <div class="menu_container menu_mm">
                 <div class="page_menu_content">
+                    <div class="page_menu_item has-children menu_mm pb-2">
+                        <ul>
+                            <li>
 
-                    <div class="page_menu_search menu_mm">
+                            </li>
+                        </ul>
                         <form action="/search" method="POST" role="search">
                             @csrf
                             <input type="text" placeholder="Search Item" name="search">

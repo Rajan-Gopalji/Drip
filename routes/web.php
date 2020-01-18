@@ -32,7 +32,8 @@ Route::any('/search',function(){
 
 Route::post('follow/{user}', 'FollowsController@store');
 
-Route::get('/', 'PostsController@index');
+Route::get('/', 'PostsController@index')->name('posts.index');
+Route::post('/', 'PostsController@index')->name('posts.index');
 Route::get('/p/create', 'PostsController@create');
 //Route::get('/ImageUpload/{last_id}', 'testcontroller@index');
 Route::post('/p', 'PostsController@store');
@@ -55,8 +56,14 @@ Route::get('/{user}/cart/checkout', 'CheckoutController@index')->name('checkout.
 Route::get('{user}/purchased', 'CheckoutController@purchased')->name('checkout.purchased');
 
 Route::get('/p/{post}/trade', 'TradeController@index')->name('trade.index');
-Route::get('/p/{post}/renegotiate', 'TradeController@renegotiate')->name('trade.renegotiate');;
+Route::get('/p/{post}/renegotiate', 'TradeController@renegotiate')->name('trade.renegotiate');
+
 Route::get('/{user}/myTrades', 'TradeController@myTradeIndex')->name('trade.myTradeIndex');
+Route::get('/{user}/myTrades/requests', 'TradeController@requests')->name('trade.requests');
+
+Route::get('/{user}/myTrades/{post}', 'TradeController@myTradeIndexPosts')->name('trade.myTradeIndexPosts');
+Route::get('/{user}/myTrades/requests/{post}', 'TradeController@ItemRequests')->name('trade.ItemRequests');
+
 Route::get('/myTrades/{post_id}/cancel', 'TradeController@cancel')->name('trade.cancel');
 Route::get('/myTrades/{post_id_trader}/{post_id_tradee}/accept', 'TradeController@acceptTrade')->name('trade.accept');
 Route::get('/myTrades/{post_id}/decline', 'TradeController@declineTrade')->name('trade.decline');

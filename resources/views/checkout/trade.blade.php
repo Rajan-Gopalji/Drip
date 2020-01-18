@@ -12,6 +12,9 @@
             @csrf
             <div class="form-group row">
                 @foreach($item as $postTrader)
+                    @if($postTrader->sold == 'y')
+
+                    @else
                     <div class="col-4 pb-4">
                     <div class="radio-toolbar">
                         <div class="custom-control custom-checkbox image-checkbox">
@@ -30,6 +33,7 @@
                         </div>
                     </div>
                     </div>
+                    @endif
                 @endforeach
                 @if ($errors->has('post_id_trader'))
                     <span class="invalid-feedback" role="alert">

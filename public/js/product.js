@@ -124,6 +124,11 @@ $(document).ready(function()
 				}
 			});
 
+			// if ()
+			// {
+            //     menuActive = true;
+            // }
+
 			//Handle page menu
 			if($('.page_menu_item').length)
 			{

@@ -1,25 +1,27 @@
 @extends('layouts.app')
-{{--<link href="{{ asset('css/filter.css')}}" rel="stylesheet">--}}
+<link href="{{ asset('css/filter.css')}}" rel="stylesheet">
 <link href="{{ asset('css/sold.css')}}" rel="stylesheet">
 <script src="{{ asset('js/filter.js') }}" defer></script>
-<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+{{--<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">--}}
 
 
 @section('content')
     <div>
 {{--        <span style="font-size:15px;cursor:pointer" onclick="openNav()">&#9776; Filter</span>--}}
-        <div class="w3-sidebar w3-bar-block w3-card w3-animate-left" style="display:none" id="mySidebar">
-            <button class="w3-bar-item w3-button w3-large"
+{{--        <form action="/" enctype="multipart/form-data" method="post">--}}
+        <div class="w3-sidebar w3-bar-block w3-card w3-animate-left w3-dark-grey" style="display:none" id="mySidebar">
+            <button class="w3-bar-item w3-button w3-large text-right"
                     onclick="w3_close()">Close &times;</button>
 
-
             <h4 class="pl-1">Type of clothing</h4>
+{{--            <div class="form-group row">--}}
             <div class="pl-3">
                 <input type="checkbox" name="filter" value="jumper"> Jumpers<br>
                 <input type="checkbox" name="filter" value="hoodie"> Hoodies<br>
                 <input type="checkbox" name="filter" value="jogger"> Joggers<br>
                 <input type="checkbox" name="filter" value="jean"> Jeans<br>
             </div>
+{{--            </div>--}}
 
             <br>
 
@@ -32,17 +34,19 @@
 
             <br>
 
-            <h4 class="pl-1">Condition</h4>
+            <h4 class="pl-">Condition</h4>
             <div class="pl-3">
                 <input type="checkbox" name="filter" value="new"> New<br>
                 <input type="checkbox" name="filter" value="used"> Used<br>
             </div>
             <br>
-            <div class="float-right pr-5">
-                <input type="button" onclick='printChecked()' value="Confirm"/>
+            <div class="btn">
+{{--                <input type="submit" value="Confirm"/>--}}
+                <input type="button" onclick="printChecked()" value="Confirm"/>
             </div>
         </div>
-        <button id="openNav" class="w3-button w3-small" onclick="w3_open()">&#9776; Filter</button>
+{{--        </form>--}}
+        <button id="openNav" class="w3-button w3-medium" onclick="w3_open()">&#9776; Filter</button>
     </div>
     <div id="main">
     <div class="container">
