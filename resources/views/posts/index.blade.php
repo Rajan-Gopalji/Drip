@@ -57,16 +57,35 @@
             </script>
 {{--            <span style="font-size:15px;cursor:pointer" onclick="openNav()">&#9776; Filter</span>--}}
         </div>
-        <div class="row pt-5">
+
+{{--        No followers--}}
+        @if($followers == false)
+        <div>
+            <h2 class="pt-5">You're currently not following anyone!</h2>
+            <h3 class="pt-5">Here's some recommendations to get you started</h3>
+            <div class="row">
+                @foreach($otherUsers as $others)
+                    <div class="col-lg-4 col-md-6 col-sm-12 pt-5">
+                        <a href="/profile/{{ $others->user->id }}">
+                            <img src="{{ $others->user->profile->profileImage() }}" class="rounded-circle w-500" style="max-width: 200px;">
+                            <span class="text-light pl-2">{{ $others->user->username }}</span>
+                        </a>
+                    </div>
+                @endforeach
+            </div>
+        </div>
+        @endif
+
+        <div class="row pt-3">
             @foreach($posts as $post)
                     <div class="col-lg-4 col-md-6 col-sm-12 pt-5">
                         <div class="pb-1">
-                                <span class="font-weight-bold">
-                                    <a href="/profile/{{ $post->user->id }}">
-                                        <img src="{{ $post->user->profile->profileImage() }}" class="rounded-circle w-100" style="max-width: 40px;">
-                                        <span class="text-light">{{ $post->user->username }}</span>
-                                    </a>
-                                </span>
+                            <span class="font-weight-bold">
+                                <a href="/profile/{{ $post->user->id }}">
+                                    <img src="{{ $post->user->profile->profileImage() }}" class="rounded-circle w-100" style="max-width: 40px;">
+                                    <span class="text-light">{{ $post->user->username }}</span>
+                                </a>
+                            </span>
                         </div>
 
                         @if($post->sold == 'y')

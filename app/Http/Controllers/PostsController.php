@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Cart;
 use App\Multi_image;
 use App\Post;
+use App\Profile;
 use App\User;
 use App\Trade;
 //use DB;
@@ -28,11 +29,16 @@ class PostsController extends Controller
         $postId = auth()->user()->posts()->pluck('posts.id');
         $mImage = Multi_image::all();
 
+        $userId = auth()->user()->id;
+        $followers = DB::table('profile_user')->where('user_id', $userId)->exists();
+
+        $otherUsers = Profile::where('id', '!=', $userId)->get();
+
 //        $small = DB::table('posts')->where('size', 'small');
         //if selected then execute query
 //        $small = DB::select( DB::raw("SELECT * FROM posts WHERE size = 'small'"));
 
-        return view('posts.index', compact('posts','mImage', 'imageSelect', 'small'));
+        return view('posts.index', compact('posts','mImage', 'imageSelect', 'small', 'followers', 'otherUsers'));
     }
 
     public function create()

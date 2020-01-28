@@ -8,7 +8,7 @@
 <div class="container">
     <div class="row">
         <!-- Other images -->
-        <div class="col-2">
+        <div class="col-lg-2 col-sm-12 pb-4">
             <div class="details_image_thumbnail" data-image="/storage/{{$post->image}}"><img src="/storage/{{$post->image}}" alt=""></div>
         @foreach($mImage as $image)
             <div class="details_image">
@@ -21,12 +21,14 @@
             </div>
             @endforeach
         </div>
-        <div class="details_image_large col-5">
+        <div class="details_image_large col-lg-5 col-md-6 col-sm-12">
+{{--        <div class="details_image_large col-5">--}}
 {{--            {{dd($mImage->image)}}--}}
             <img src="/storage/{{$post->image}}" class="w-100">
 {{--            <img src="{{ URL::to('/') }}/images/{{$mImage->first() }}" class="w-100">--}}
+{{--        </div>--}}
         </div>
-        <div class="col-lg-5">
+        <div class="col-lg-5 pt-1">
             <div class="d-flex align-items-center">
                 <div class="pr-3 pb-4">
                     <img src="{{ $post->user->profile->profileImage() }}" class="rounded-circle w-100" style="max-width: 40px;">
