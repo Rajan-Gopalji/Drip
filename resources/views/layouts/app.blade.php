@@ -139,6 +139,7 @@
                             <a href="#">My Profile<i class="fa fa-angle-down"></i></a>
                             <ul class="page_menu_selection menu_mm">
                                 <li class="page_menu_item menu_mm"><a href="/profile/{{Auth::user()->id}}">Profile<i class="fa fa-angle-down"></i></a></li>
+                                <li class="page_menu_item menu_mm"><a href="/{{Auth::user()->id}}/myTrades">Trade<i class="fa fa-angle-down"></i></a></li>
                                 <li class="page_menu_item menu_mm"><a href="/profile/{{Auth::user()->id}}/edit">Update Details<i class="fa fa-angle-down"></i></a></li>
                                 <li class="page_menu_item menu_mm"><a href="{{ route('logout') }}" onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">{{ __('Log Out') }}<i class="fa fa-angle-down"></i></a></li>

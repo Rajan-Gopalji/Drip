@@ -11,7 +11,7 @@
 <div class="container">
     <div class="row pt-5">
         @foreach($user->posts as $post)
-            <div class="col-4 pb-4">
+            <div class="col-lg-4 col-md-6 col-sm-12">
                 <a href="/p/{{ $post->id }}">
                     <div class="text-right">
 {{--                        <button type="button" class="block-delete">Delete</button>--}}

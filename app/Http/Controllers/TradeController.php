@@ -77,6 +77,13 @@ class TradeController extends Controller
         $theyGiveItem = Post::whereIn('id', $theyGiveItemId)->paginate(20);
         $numOffers = $theyGiveItem->count();
 
+
+        $accepted_id = Trade::where('accepts', "y")->pluck('post_id_trader');
+        foreach ($accepted_id as $accept_id) {
+
+        }
+
+
         $offers =  \App\Trade::where('post_id_tradee', $yourItemId)->pluck('accepts');
         foreach ($offers as $offer)
         {
@@ -85,7 +92,7 @@ class TradeController extends Controller
 
         $countIncoming = \App\Trade::where('user_id_tradee', $user_id)->count();
 
-        return view('profiles.tradeRequestPost', compact('yourItem', 'theyGiveItem', 'offers', 'numOffers', 'countIncoming'));
+        return view('profiles.tradeRequestPost', compact('yourItem', 'theyGiveItem', 'offers', 'numOffers', 'countIncoming', 'accept_id'));
     }
 
     public function requests()
@@ -119,6 +126,13 @@ class TradeController extends Controller
             'post_id_trader' => 'required',
         ]);
 
+        $itemTraded = Trade::where(['user_id' => $user_id_trader, 'post_id_trader' => $data['post_id_trader']])->exists();
+
+        if ($itemTraded == true)
+        {
+            Trade::where('post_id_trader', $data['post_id_trader'])->delete();
+        }
+
         auth()->user()->trade()->create([
             'user_id_tradee' => $user_id_tradee,
             'user_id' => $user_id_trader,
@@ -133,11 +147,11 @@ class TradeController extends Controller
     public function acceptTrade($post_id_trader, $post_id_tradee)
     {
         $status = 'y';
+        Trade::where('post_id_tradee', $post_id_tradee)->update(['accepts' => 'n']);
         DB::select(DB::raw('UPDATE trades SET accepts = :status WHERE  post_id_trader = :post_id_trader'), array('post_id_trader' => $post_id_trader, 'status' => $status));
         DB::table('posts')
             ->whereIn('id', [$post_id_trader, $post_id_tradee])
             ->update(['sold' => $status]);
-
         return back()->with('success', 'Trade Accepted');
     }
 

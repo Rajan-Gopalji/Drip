@@ -40,7 +40,7 @@
                     </div>
                 </div>
             </div>
-            <div class="details_content">
+            <n class="details_content">
                 <div class="details_name">{{ $post->caption }}</div>
                 <!-- <div class="details_discount">$890</div> -->
                 <div class="details_price">£{{ $post->price }}</div>
@@ -76,13 +76,20 @@
 {{--                    <input class="button cart_button" type="submit" name="removeCart" value="Remove from cart"/>--}}
                 </div>
                 @if($post->user->id != Auth::user()->id )
-                    @if($post->sold == 'y')
-                        <div class="button cart_button"><a href="#">Item has been SOLD!</a></div>
-                    @elseif($duplicate == true)
-                        <div class="button cart_button"><a href="/cart/add/{{$post->id}}">Remove from Cart</a></div>
+                    @if($trade_exists)
+                        <div class="button cart_button"><a href="/cart/add/{{$post->id}}">Add to cart*</a></div>
+                        <h5 class="pt-3">*You have this item in a trade. Adding to cart will cancel the trade.</h5>
                     @else
-                        <div class="button cart_button"><a href="/cart/add/{{$post->id}}">Add to cart</a></div>
-                        <div class="button cart_button"><a href="{{$post->id}}/trade">Trade</a></div>
+                        @if($post->sold == 'y')
+                            <div class="button cart_button"><a href="#">Item has been SOLD!</a></div>
+                        @elseif($duplicate == true)
+                            <div class="button cart_button"><a href="/cart/add/{{$post->id}}">Remove from Cart</a></div>
+                        @elseif($count > 0)
+                            <div class="button cart_button"><a href="/cart/add/{{$post->id}}">Add to cart</a></div>
+                            <div class="button cart_button"><a href="{{$post->id}}/trade">Trade</a></div>
+                        @else
+                            <div class="button cart_button"><a href="/cart/add/{{$post->id}}">Add to cart</a></div>
+                        @endif
                     @endif
                 @endif
 

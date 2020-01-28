@@ -1,5 +1,6 @@
 @extends('layouts.app')
 <link href="{{ asset('css/toggle.css')}}" rel="stylesheet">
+<link href="{{ asset('css/sold.css')}}" rel="stylesheet">
 @section('content')
     <div class="container">
         <h1>Trade Requests</h1>
@@ -44,6 +45,7 @@
         <h2>({{$numOffers}}) Offers</h2>
         <div class="row pt-2">
             @foreach($theyGiveItem as $itemTheyGive)
+{{--                @if($offers->contains("p"))--}}
                 <div class="col-lg-4 col-md-6 col-sm-12">
                     <a href="/p/{{ $itemTheyGive->id }}">
                     {{--                                    @foreach ($imageSelect as $mimage)--}}
@@ -58,10 +60,12 @@
                                 </span>
                     </div>
                     </a>
-
+{{--                @endif--}}
             <div class="offer pt-3">
                 @if($offers->contains("y"))
-
+                    @if($accept_id == $itemTheyGive->id)
+                        <div class="button"><a href="#">Accepted</a></div>
+                    @endif
                 @elseif($offers->contains("n"))
                     <div class="button"><a href="{{ route('trade.accept', ['post_id_trader' => $itemTheyGive->id, 'post_id_tradee' => $yourItem->id]) }}">Accept</a></div>
                 @else

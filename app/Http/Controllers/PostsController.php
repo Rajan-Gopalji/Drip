@@ -6,6 +6,7 @@ use App\Cart;
 use App\Multi_image;
 use App\Post;
 use App\User;
+use App\Trade;
 //use DB;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -175,8 +176,10 @@ class PostsController extends Controller
         $mImage = DB::table('multi_image')->where('post_id', $postId)->pluck('image');
         $postsIm = Post::whereIn('id', $mImage)->paginate(5);
         $user_id = auth()->user()->id;
+        $count = Post::where('user_id', $user_id)->count();
+        $trade_exists = Trade::where(['user_id' => $user_id, 'post_id_tradee' => $postId])->exists();
         $duplicate = Cart::where(['user_id' => $user_id, 'post_id' => $postId])->exists();
-        return view('posts.show', compact('post', 'mImage', 'duplicate'));
+        return view('posts.show', compact('post', 'mImage', 'duplicate', 'trade_exists', 'count'));
     }
 
 }

@@ -7,10 +7,10 @@
     <div class="container">
         <h1>Trade</h1>
         <br>
-        <h3>Choose an item to trade:</h3>
+        <h3>Choose an item to trade:</h3><h5>*Choosing an item that has been used in another trade will cancel that trade and open this one</h5>
         <form action="/p/{{$postId}}/trade" enctype="multipart/form-data" method="post">
             @csrf
-            <div class="form-group row">
+            <div class="form-group row pt-2">
                 @foreach($item as $postTrader)
                     @if($postTrader->sold == 'y')
 

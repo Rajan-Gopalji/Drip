@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Cart;
 use App\Post;
+use App\Trade;
 use App\User;
 use DB;
 use Illuminate\Http\Request;
@@ -48,6 +49,8 @@ class CheckoutController extends Controller
         $posts = Post::whereIn('id', $user)->paginate(5);
         foreach($posts as $post) {
             $postsCart = DB::select( DB::raw("UPDATE posts SET sold = 'y' WHERE id = '$post->id'"));
+            $cancelTrades = Trade::where(['post_id_tradee' => $post->id])->delete();
+            $cancelRequests = Trade::where(['post_id_trader' => $post->id])->delete();
         }
 
         $clear = DB::select( DB::raw("DELETE FROM carts WHERE user_id = '$user_id'"));
