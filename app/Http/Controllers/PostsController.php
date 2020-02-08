@@ -22,10 +22,10 @@ class PostsController extends Controller
         $this->middleware('auth');
     }
 
-    public function index()
+    public function index(Request $request)
     {
         $users = auth()->user()->following()->pluck('profiles.user_id');
-        $posts = Post::whereIn('user_id', $users)->with('user')->latest()->paginate(99);
+        $posts = Post::filter($request)->whereIn('user_id', $users)->with('user')->latest()->paginate(99);
         $postId = auth()->user()->posts()->pluck('posts.id');
         $mImage = Multi_image::all();
 
@@ -34,11 +34,7 @@ class PostsController extends Controller
 
         $otherUsers = Profile::where('id', '!=', $userId)->get();
 
-//        $small = DB::table('posts')->where('size', 'small');
-        //if selected then execute query
-//        $small = DB::select( DB::raw("SELECT * FROM posts WHERE size = 'small'"));
-
-        return view('posts.index', compact('posts','mImage', 'imageSelect', 'small', 'followers', 'otherUsers'));
+        return view('posts.index', compact('posts','mImage', 'imageSelect', 'followers', 'otherUsers'));
     }
 
     public function create()

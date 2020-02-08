@@ -105,7 +105,7 @@
                         <li><a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
                     </ul>
                 </div> -->
-            </div>
+{{--            </div>--}}
         </div>
         <div class="row description_row">
             <div class="col">

@@ -4,6 +4,9 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
+use App\Filters\ProductFilter;
+use Illuminate\Database\Eloquent\Builder;
+
 class Post extends Model
 {
     protected $guarded = [];
@@ -16,5 +19,10 @@ class Post extends Model
     public function images()
     {
         return $this->hasMany(Multi_image::class);
+    }
+
+    public function scopeFilter(Builder $builder, $request)
+    {
+        return (new ProductFilter($request))->filter($builder);
     }
 }

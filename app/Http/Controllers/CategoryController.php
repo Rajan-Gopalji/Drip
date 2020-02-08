@@ -7,16 +7,16 @@ use Illuminate\Http\Request;
 
 class CategoryController extends Controller
 {
-    public function men()
+    public function men(Request $request)
     {
-        $posts = Post::latest()->paginate(99);
+        $posts = Post::filter($request)->latest()->paginate(99);
 
         return view('posts.men', compact('posts'));
     }
 
-    public function women()
+    public function women(Request $request)
     {
-        $posts = Post::latest()->paginate(99);;
+        $posts = Post::filter($request)->latest()->paginate(99);
         return view('posts.women', compact('posts'));
     }
 

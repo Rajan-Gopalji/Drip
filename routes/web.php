@@ -34,6 +34,9 @@ Route::post('follow/{user}', 'FollowsController@store');
 
 Route::get('/', 'PostsController@index')->name('posts.index');
 Route::post('/', 'PostsController@index')->name('posts.index');
+
+Route::get('/', 'PostsController@index')->name('products');
+
 Route::get('/p/create', 'PostsController@create');
 //Route::get('/ImageUpload/{last_id}', 'testcontroller@index');
 Route::post('/p', 'PostsController@store');
