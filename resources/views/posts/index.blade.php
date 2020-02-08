@@ -14,8 +14,8 @@
             <h4 class="pl-1">Type of clothing</h4>
             <div class="pl-3">
                 <button><a href="?category=sports">Sports</a></button><br>
-                <button><a href="?category=lifestyle">Lifestyle</a></button><br>
-                <button><a href="?category=sports">???</a></button><br>
+                <button><a href="?category=casual">Casual</a></button><br>
+                <button><a href="?category=smart">Smart</a></button><br>
             </div>
             <br>
             <h4 class="pl-1">Size</h4>
@@ -32,7 +32,7 @@
             </div>
             <br>
             <div class="btn">
-                <input type="button" onclick="window.location =  '/men'" value="Clear All"/>
+                <input type="button" onclick="window.location =  '/'" value="Clear All"/>
             </div>
         </div>
         <button id="openNav" class="w3-button w3-medium" onclick="w3_open()">&#9776; Filter</button>

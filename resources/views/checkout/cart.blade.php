@@ -1,19 +1,8 @@
 @extends('layouts.app')
 
 <head>
-    {{--        <link href="{{ asset('css/main_styles.css') }}" rel="stylesheet">--}}
     <link href="{{ asset('css/cart.css')}}" rel="stylesheet">
     <link href="{{ asset('css/sold.css')}}" rel="stylesheet">
-
-    {{--        <link rel="stylesheet" type="text/css" href="{{ asset('css/cart_responsive.css')}}styles/cart_responsive.css">--}}
-{{--    <script>--}}
-{{--        function myFunction() {--}}
-{{--            var delivery = document.getElementById("nextDay").checked;--}}
-{{--            if (delivery === true){--}}
-{{--                {{$total = $total + 4}}--}}
-{{--            }--}}
-{{--        }--}}
-{{--    </script>--}}
 </head>
 
 @section('content')
@@ -26,9 +15,7 @@
                     <div class="cart_info_columns clearfix">
                         <div class="cart_info_col cart_info_col_product">Product</div>
                         <div class="cart_info_col cart_info_col_price">Price</div>
-                        <!-- <div class="cart_info_col cart_info_col_quantity">Quantity</div> -->
                         <div class="cart_info_col cart_info_col_quantity">-</div>
-                        <!-- <div class="cart_info_col cart_info_col_total">Total</div> -->
                         <div class="cart_info_col cart_info_col_total">-</div>
                     </div>
                 </div>
@@ -57,9 +44,6 @@
                                 </div>
                             </a>
                             <div class="cart_item_name_container">
-
-{{--                                {{dd($post->caption)}}--}}
-
                                 <div class="cart_item_name"><a href="/p/{{$post->id}}">{{$post->caption}}</a></div>
                                 <div class="cart_item_edit"><a href="#">Edit Product</a></div>
                             </div>
@@ -78,7 +62,6 @@
                             </div>
                         </div>
                         <!-- Total -->
-                    <!-- <div class="cart_item_total">£</div> -->
                     </div>
                     @endforeach
                         @endif
@@ -101,18 +84,7 @@
                     <!-- Delivery -->
                     <div class="delivery">
                         <div class="section_title">Shipping Charge</div>
-{{--                        <div class="section_subtitle">Select your delivery option</div>--}}
                         <div class="delivery_options">
-{{--                            <label class="delivery_option clearfix">Next day delivery--}}
-{{--                                <input type="radio" name="radio" id="nextDay" value="4.99">--}}
-{{--                                <span class="checkmark"></span>--}}
-{{--                                <span class="delivery_price">£4.99</span>--}}
-{{--                            </label>--}}
-{{--                            <label class="delivery_option clearfix">Standard delivery--}}
-{{--                                <input type="radio" name="radio" id="free" value="0.00">--}}
-{{--                                <span class="checkmark"></span>--}}
-{{--                                <span class="delivery_price">Free</span>--}}
-{{--                            </label>--}}
                             <p>
                                 Orders over <b id="price">£100</b> are given <b id="price">FREE next day delivery</b>
                                 <br>
@@ -126,16 +98,6 @@
                         </div>
                     </div>
                     <!-- Coupon Code -->
-{{--                    <div class="coupon">--}}
-{{--                        <div class="section_title">Coupon code</div>--}}
-{{--                        <div class="section_subtitle">Enter your coupon code</div>--}}
-{{--                        <div class="coupon_form_container">--}}
-{{--                            <form action="#" id="coupon_form" class="coupon_form">--}}
-{{--                                <input type="text" class="coupon_input" required="required">--}}
-{{--                                <button class="button coupon_button"><span>Apply</span></button>--}}
-{{--                            </form>--}}
-{{--                        </div>--}}
-{{--                    </div>--}}
                 </div>
                 <!--Cart total -->
                 <div class="col-lg-6 offset-lg-2">
@@ -162,8 +124,6 @@
                                 </li>
                             </ul>
                         </div>
-{{--                        @if($post->sold = 'y')--}}
-{{--                            <h3 class="float-right">Remove sold items from cart</h3>--}}
                         @if($total != 0 and $post->sold == 'n')
                             <div class="button checkout_button"><a href="/{{Auth::user()->id}}/cart/checkout">Proceed to checkout</a></div>
                         @elseif($total > 0 and $post->sold == 'y')
@@ -174,5 +134,4 @@
             </div>
         </div>
     </div>
-{{--    <script src="{{ asset('js/delivery.js') }}" defer></script>--}}
 @endsection

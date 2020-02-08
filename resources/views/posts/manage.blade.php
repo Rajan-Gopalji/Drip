@@ -3,10 +3,6 @@
 @section('content')
     <head>
         <link href="{{ asset('css/button.css') }}" rel="stylesheet" />
-{{--        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@8"></script>--}}
-{{--        <script src="sweetalert2.all.min.js"></script>--}}
-{{--        <link rel="stylesheet" href="sweetalert2.min.css">--}}
-{{--        <script src="{{ asset('js/popup.js') }}"></script>--}}
     </head>
 <div class="container">
     <div class="row pt-5">
@@ -14,8 +10,6 @@
             <div class="col-lg-4 col-md-6 col-sm-12">
                 <a href="/p/{{ $post->id }}">
                     <div class="text-right">
-{{--                        <button type="button" class="block-delete">Delete</button>--}}
-{{--                        <a class="block-delete" onClick="JSconfirm({{$post->id}})" name="Delete">Delete</a>--}}
                         <a href="{{ route('post.destroy', ['id' => $post->id, 'user' => $user ->id]) }}" onclick="return confirm('Are you sure?')" class="block-delete">Delete</a>
                     </div>
                     <img src="/storage/{{ $post->image }}" class="w-100">

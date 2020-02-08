@@ -36,15 +36,12 @@ class TradeController extends Controller
             ['user_id', $user_id]
             ])->pluck('post_id_trader');
         $youGiveItem = Post::whereIn('id', $youGiveItemId)->paginate(20);
-//        $numOffers = $theyGiveItem->count();
 
         $offers =  \App\Trade::where('post_id_tradee', $ItemYouWantId)->pluck('accepts');
         foreach ($offers as $offer)
         {
 
         }
-
-//        $countIncoming = \App\Trade::where('user_id_tradee', $user_id)->count();
 
         return view('profiles.myTradePosts', compact('itemYouWant', 'youGiveItem', 'offer'));
     }

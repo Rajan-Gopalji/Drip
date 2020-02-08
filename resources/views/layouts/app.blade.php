@@ -114,25 +114,14 @@
                             <a href="men.php">Men<i class="fa fa-angle-down"></i></a>
                             <ul class="page_menu_selection menu_mm">
                                 <li class="page_menu_item menu_mm"><a href="/men">All Products<i class="fa fa-angle-down"></i></a></li>
-{{--                                <li class="page_menu_item menu_mm"><a href="product.html">Jackets<i class="fa fa-angle-down"></i></a></li>--}}
-{{--                                <li class="page_menu_item menu_mm"><a href="categories.html">Trousers<i class="fa fa-angle-down"></i></a></li>--}}
                             </ul>
                         </li>
                         <li class="page_menu_item has-children menu_mm">
                             <a href="index.html">Women<i class="fa fa-angle-down"></i></a>
                             <ul class="page_menu_selection menu_mm">
                                 <li class="page_menu_item menu_mm"><a href="/women">All Products<i class="fa fa-angle-down"></i></a></li>
-{{--                                <li class="page_menu_item menu_mm"><a href="product.html">Jackets<i class="fa fa-angle-down"></i></a></li>--}}
-{{--                                <li class="page_menu_item menu_mm"><a href="categories.html">Trousers<i class="fa fa-angle-down"></i></a></li>--}}
                             </ul>
                         </li>
-{{--                        <li class="page_menu_item has-children menu_mm">--}}
-{{--                            <a href="categories.html">Categories<i class="fa fa-angle-down"></i></a>--}}
-{{--                            <ul class="page_menu_selection menu_mm">--}}
-{{--                                <li class="page_menu_item menu_mm"><a href="categories.html">Jackets<i class="fa fa-angle-down"></i></a></li>--}}
-{{--                                <li class="page_menu_item menu_mm"><a href="categories.html">Trousers<i class="fa fa-angle-down"></i></a></li>--}}
-{{--                            </ul>--}}
-{{--                        </li>--}}
                         <li class="page_menu_item menu_mm"><a href="/p/create">Sell Your Own<i class="fa fa-angle-down"></i></a></li>
                         <li class="page_menu_item menu_mm"><a href="/profile/{{Auth::user()->id}}/manage">Manage Stock<i class="fa fa-angle-down"></i></a></li>
                         <li class="page_menu_item has-children menu_mm">
@@ -155,17 +144,7 @@
             </div>
 
             <div class="menu_close"><i class="fa fa-times" aria-hidden="true"></i></div>
-
-            <!-- <div class="menu_social">
-              <ul>
-                <li><a href="#"><i class="fa fa-pinterest" aria-hidden="true"></i></a></li>
-                <li><a href="#"><i class="fa fa-instagram" aria-hidden="true"></i></a></li>
-                <li><a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
-                <li><a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
-              </ul>
-            </div> -->
         </div>
-
         <main class="py-4">
             @yield('content')
         </main>

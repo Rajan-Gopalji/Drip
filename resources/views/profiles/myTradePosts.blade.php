@@ -34,7 +34,7 @@
                 <div class="button"><a href="{{ route('trade.cancel', ['post_id' => $youWant->id]) }}">Cancel Trade</a></div>
             @elseif($offer == "y")
                 <div class="button"><a href="#">Accepted</a></div>
-                <div class="button"><a href="#">Clear Trade</a></div>
+                <div class="button"><a href="{{ route('trade.cancel', ['post_id' => $youWant->id]) }}">Clear Trade</a></div>
             @else
                 <div class="button"><a href="#">Pending</a></div>
                 <div class="button"><a href="{{ route('trade.cancel', ['post_id' => $youWant->id]) }}">Cancel Trade</a></div>
@@ -46,16 +46,14 @@
         @foreach($youGiveItem as $youGive)
             <div class="col-lg-4 col-md-6 col-sm-12">
                 <a href="/p/{{ $youGive->id }}">
-                    {{--                                    @foreach ($imageSelect as $mimage)--}}
                     <img src="/storage/{{$youGive->image}}" class="w-100">
-                    {{--                            @endforeach--}}
                     <div class="pt-2">
-                                    <span class="text-light pl-2">
-                                        <b>{{ $youGive->caption }}</b>
-                                    </span>
+                        <span class="text-light pl-2">
+                            <b>{{ $youGive->caption }}</b>
+                        </span>
                         <span class="text-success float-right pr-2">
-                                        £{{ $youGive->price }}
-                                    </span>
+                            £{{ $youGive->price }}
+                        </span>
                     </div>
                 </a>
             </div>

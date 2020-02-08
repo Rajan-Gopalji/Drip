@@ -1,8 +1,6 @@
 @extends('layouts.app')
 <link href="{{ asset('css/sold.css')}}" rel="stylesheet">
-{{--<link href="{{ asset('css/cart.css')}}" rel="stylesheet">--}}
-{{--<script src="{{ asset('js/app.js') }}" defer></script>--}}
-{{--<script src="{{ asset('js/trade.js') }}" defer></script>--}}
+
 @section('content')
     <div class="container">
         <h1>Trade</h1>
@@ -46,7 +44,6 @@
             <h3>Item you want:</h3>
 
                 <div class="radio-toolbar">
-{{--                    <input type="radio" id="radioPosteeid" name="post_id_tradee" value="{{$postTrade->id}}" checked>--}}
                     @foreach($itemTrade as $postTrade)
                         <div class="col-4 pb-4">
                                 <img src="/storage/{{$postTrade->image}}" alt="#" class="img-fluid">
@@ -72,7 +69,6 @@
             </div>
 
             <div class="row pb-5 pl-3">
-{{--                <div class="button checkout_button"><a href="#">Make Trade</a></div>--}}
                 <button type="submit" class="btn btn-primary">Make Trade</button>
             </div>
         </form>

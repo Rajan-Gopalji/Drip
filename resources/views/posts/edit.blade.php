@@ -136,12 +136,40 @@
                 <div class="form-group row">
                     <label for="category" class="col-md-4 col-form-label">Category</label>
 
-                    <input id="category"
-                           type="text"
-                           class="form-control{{ $errors->has('category') ? ' is-invalid' : '' }}"
-                           name="category"
-                           value="{{ old('category') ?? $post->category}}"
-                           autocomplete="category" autofocus>
+                    @if($post->category == 'sports')
+                        <div class="radio-toolbar">
+                            <input type="radio" id="radioSport" name="category" value="sports" checked>
+                            <label for="radioSport">Sport</label>
+
+                            <input type="radio" id="radioCasual" name="category" value="casual">
+                            <label for="radioCasual">Casual</label>
+
+                            <input type="radio" id="radioSmart" name="category" value="smart">
+                            <label for="radioSmart">Smart</label>
+                        </div>
+                    @elseif($post->category == "casual")
+                        <div class="radio-toolbar">
+                            <input type="radio" id="radioSport" name="category" value="sports">
+                            <label for="radioSport">Sport</label>
+
+                            <input type="radio" id="radioCasual" name="category" value="casual" checked>
+                            <label for="radioCasual">Casual</label>
+
+                            <input type="radio" id="radioSmart" name="category" value="smart">
+                            <label for="radioSmart">Smart</label>
+                        </div>
+                    @else
+                        <div class="radio-toolbar">
+                            <input type="radio" id="radioSport" name="category" value="sports">
+                            <label for="radioSport">Sport</label>
+
+                            <input type="radio" id="radioCasual" name="category" value="casual">
+                            <label for="radioCasual">Casual</label>
+
+                            <input type="radio" id="radioSmart" name="category" value="smart" checked>
+                            <label for="radioSmart">Smart</label>
+                        </div>
+                    @endif
 
                     @if ($errors->has('category'))
                         <span class="invalid-feedback" role="alert">
@@ -169,8 +197,6 @@
                         <input type="radio" id="radioRed" name="colour" value="red">
                         <label for="radioRed">Red</label>
 
-                        <input type="radio" id="radioStone" name="colour" value="stone">
-                        <label for="radioStone">Stone</label>
                     </div>
 
                     @if ($errors->has('colour'))

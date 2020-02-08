@@ -30,6 +30,6 @@ class MultiImage extends Migration
      */
     public function down()
     {
-        //
+        Schema::dropIfExists('multi_image');
     }
 }

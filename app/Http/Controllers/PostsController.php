@@ -121,14 +121,14 @@ class PostsController extends Controller
     public function update(Request $request, User $user, Post $post)
     {
         $data = request()->validate([
-            'caption' => 'required',
-            'gender' => 'required',
-            'category' => 'required',
-            'size' => 'required',
-            'quality' => 'required',
-            'description' => 'required',
-            'colour' => 'required',
-            'price' => 'required',
+            'caption' => '',
+            'gender' => '',
+            'category' => '',
+            'size' => '',
+            'quality' => '',
+            'description' => '',
+            'colour' => '',
+            'price' => '',
             'image' => '',
         ]);
 

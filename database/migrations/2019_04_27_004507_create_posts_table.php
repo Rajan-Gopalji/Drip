@@ -23,16 +23,14 @@ class CreatePostsTable extends Migration
             $table->string('quality');
             $table->text('description');
             $table->string('colour');
+            $table->string('sold');
             $table->double('price');
             $table->string('image');
             $table->timestamps();
 
             $table->index('user_id');
         });
-
-        Schema::multiImage('multi_image', function (Blueprint $table) {
-            $table->unsignedBigInteger(post_id);
-        });
+        
     }
 
     /**

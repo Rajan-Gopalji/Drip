@@ -11,8 +11,8 @@
             <h4 class="pl-1">Type of clothing</h4>
             <div class="pl-3">
                 <button><a href="?category=sports">Sports</a></button><br>
-                <button><a href="?category=lifestyle">Lifestyle</a></button><br>
-                <button><a href="?category=sports">???</a></button><br>
+                <button><a href="?category=casual">Casual</a></button><br>
+                <button><a href="?category=smart">Smart</a></button><br>
             </div>
             <br>
             <h4 class="pl-1">Size</h4>
@@ -37,7 +37,7 @@
     <div id="main">
         <div class="container">
             <div>
-                <h1 id="page_title">Men</h1>
+                <h1 id="page_title">Women</h1>
             </div>
             <div class="row pt-5">
                 @foreach($posts as $post)
@@ -67,12 +67,12 @@
                                 <a href="/p/{{ $post->id }}">
                                     <img src="/storage/{{ $post->image }}" class="w-100">
                                     <div class="pt-2">
-                                            <span class="text-light pl-2">
-                                                <b>{{ $post->caption }}</b>
-                                            </span>
+                                        <span class="text-light pl-2">
+                                            <b>{{ $post->caption }}</b>
+                                        </span>
                                         <span class="text-success float-right pr-2">
-                                                £{{$post->price}}
-                                            </span>
+                                            £{{$post->price}}
+                                        </span>
                                     </div>
                                 </a>
                             @endif
