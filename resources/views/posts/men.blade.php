@@ -10,26 +10,40 @@
 
             <h4 class="pl-1">Type of clothing</h4>
             <div class="pl-3">
-                <button><a href="?category=sports">Sports</a></button><br>
-                <button><a href="?category=casual">Casual</a></button><br>
-                <button><a href="?category=smart">Smart</a></button><br>
+                <button class="w3-button"><a href="?category=sports">Sports</a></button><br>
+                <button class="w3-button"><a href="?category=casual">Casual</a></button><br>
+                <button class="w3-button"><a href="?category=smart">Smart</a></button><br>
             </div>
             <br>
             <h4 class="pl-1">Size</h4>
             <div class="pl-3">
-                <button><a href="?size=small">Small</a></button><br>
-                <button><a href="?size=medium">Medium</a></button><br>
-                <button><a href="?size=large">Large</a></button><br>
+                <button class="w3-button"><a href="?size=small">Small</a></button><br>
+                <button class="w3-button"><a href="?size=medium">Medium</a></button><br>
+                <button class="w3-button"><a href="?size=large">Large</a></button><br>
+            </div>
+            <br>
+            <h4 class="pl-">Colour</h4>
+            <div class="pl-3">
+                <button class="w3-button"><a href="?colour=black">Black</a></button><br>
+                <button class="w3-button"><a href="?colour=grey">Grey</a></button><br>
+                <button class="w3-button"><a href="?colour=red">Red</a></button><br>
+                <button class="w3-button"><a href="?colour=blue">Blue</a></button><br>
+                <button class="w3-button"><a href="?colour=white">White</a></button><br>
             </div>
             <br>
             <h4 class="pl-">Condition</h4>
             <div class="pl-3">
-                <button><a href="?quality=new">New</a></button><br>
-                <button><a href="?quality=used">Used</a></button><br>
+                <button class="w3-button"><a href="?quality=new">New</a></button><br>
+                <button class="w3-button"><a href="?quality=used">Used</a></button><br>
             </div>
             <br>
-            <div class="btn">
+            <div class="btn pb-5">
                 <input type="button" onclick="window.location =  '/men'" value="Clear All"/>
+            </div>
+            <div class="pb-5">
+                <br>
+                <br>
+                <br>
             </div>
         </div>
         <button id="openNav" class="w3-button w3-medium" onclick="w3_open()">&#9776; Filter</button>

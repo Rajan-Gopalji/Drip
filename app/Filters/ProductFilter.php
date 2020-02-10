@@ -11,6 +11,7 @@ class ProductFilter extends AbstractFilter
     protected $filters = [
         'category' => TypeFilter::class,
         'size' => SizeFilter::class,
-        'quality' => ConditionFilter::class
+        'quality' => ConditionFilter::class,
+        'colour' => ColourFilter::class
     ];
 }

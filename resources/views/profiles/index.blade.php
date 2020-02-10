@@ -34,9 +34,9 @@
                 <div class="pr-5"><strong>{{ $followersCount }}</strong> followers</div>
                 <div class="pr-5"><strong>{{ $followingCount }}</strong> following</div>
             </div>
-            <div class="pt-4 font-weight-bold">{{ $user->profile->title }}</div>
-            <div>{{ $user->profile->description }}</div>
-            <div><a href="#">{{ $user->profile->url }}</a></div>
+{{--            <div class="pt-4 font-weight-bold">{{ $user->profile->title }}</div>--}}
+            <div class="pt-4">{{ $user->profile->description }}</div>
+{{--            <div><a href="#">{{ $user->profile->url }}</a></div>--}}
         </div>
     </div>
 

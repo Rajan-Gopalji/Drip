@@ -147,9 +147,6 @@
 
                         <input type="radio" id="radioRed" name="colour" value="red">
                         <label for="radioRed">Red</label>
-
-                        <input type="radio" id="radioStone" name="colour" value="stone">
-                        <label for="radioStone">Stone</label>
                     </div>
 
                     @if ($errors->has('colour'))

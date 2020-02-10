@@ -13,7 +13,7 @@
             <div class="col-8 offset-2">
 
                 <div class="row">
-                    <h1>Add New Post</h1>
+                    <h1>Edit Post: {{$post->caption}}</h1>
                 </div>
                 <div class="form-group row">
                     <label for="caption" class="col-md-4 col-form-label">Item Name</label>
